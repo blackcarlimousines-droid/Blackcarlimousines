@@ -805,7 +805,9 @@
           <div class="field">
             <div class="label">Drop-Off Location <span class="req">*</span></div>
             <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." />
-          </div>
+          
+          <div class="help" id="br_maps_help" style="margin-top:-6px;"></div>
+</div>
 
           <div class="two">
             <div class="field">
@@ -883,13 +885,19 @@
 
           <div class="note" id="br_price_note" style="margin-top:10px; border:1px solid rgba(214,177,94,.22); background:rgba(214,177,94,.10); padding:10px 12px; border-radius:14px;">Enter your name to calculate price.</div>
 
-          <div class="note" style="margin-top:8px;">Secure checkout via Stripe.</div>
+          <div class="note" style="margin-top:8px;">
+            <strong>Pay Now:</strong> You will be redirected to Stripe Checkout. After successful payment, an internal email will be sent to dispatch (temporary).
+          </div>
 
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
             <button class="btn" type="button" id="br_back_3">Back</button>
             <button class="btn primary" type="button" id="br_pay">Pay Now (Stripe)</button>
           </div>
-</div>
+
+          <div class="help" style="margin-top:10px;">
+            Internal notification email (temporary): <span class="muted">mor1976@hotmail.com</span>
+          </div>
+        </div>
       </div>
 
       <div class="panel">
@@ -1046,6 +1054,8 @@
     // Called by Google Maps script (Places library)
     window.initBookRideMaps = function initBookRideMaps(){
       try{
+        const mh = document.getElementById("br_maps_help");
+        if (mh) mh.textContent = "";
         const pickupInput = el("br_pickup");
         const dropoffInput = el("br_dropoff");
         if(!pickupInput || !dropoffInput) return;
@@ -1095,6 +1105,8 @@
 
       }catch(e){
         console.warn("initBookRideMaps failed:", e);
+        const mh = document.getElementById("br_maps_help");
+        if (mh) mh.textContent = "Google autocomplete failed to initialize. Confirm Places API is enabled and your key allows this domain.";
       }
     };
 
@@ -1425,7 +1437,7 @@
 
       if(priceEl) priceEl.textContent = fmtMoney(total) + " CAD";
       if(subEl) subEl.textContent = (brDistanceText ? `Distance: ${brDistanceText}` : "Distance calculated");
-      if(noteEl) noteEl.textContent = "Estimated total based on distance and selected options.";
+      if(noteEl) noteEl.textContent = details;
     }
 
     async function createCheckoutSession(){
@@ -1547,19 +1559,34 @@
   </script>
 
 <script>
-  // Google Maps (Places) loader for Book a Ride
+  // Google Maps (Places) loader for Book a Ride (Autocomplete)
   // Uses the SAME key as index.html
   const GOOGLE_MAPS_API_KEY = "AIzaSyD00hPzMmT1FEwkbxbRIZcl-8YaJIg9xv8";
+
+  function setMapsHelp(msg){
+    const mh = document.getElementById("br_maps_help");
+    if (mh) mh.textContent = msg || "";
+  }
+
   (function loadGoogleMapsPlaces(){
-    if(!GOOGLE_MAPS_API_KEY){
-      console.warn("Google Maps API key is missing.");
+    // Autocomplete will NOT work reliably when opening the file directly (file://)
+    // because Google API key HTTP referrer restrictions won’t match.
+    if (location.protocol === "file:"){
+      setMapsHelp("Google address autocomplete won’t work when opened as a file (file://). Open this page via a local server or your hosted website.");
       return;
     }
+
+    if(!GOOGLE_MAPS_API_KEY){
+      setMapsHelp("Google Maps API key is missing. Add your key to enable address autocomplete.");
+      return;
+    }
+
     // already loaded?
     if(window.google && google.maps && google.maps.places){
       if(window.initBookRideMaps) window.initBookRideMaps();
       return;
     }
+
     const s = document.createElement("script");
     s.src =
       "https://maps.googleapis.com/maps/api/js?key=" +
@@ -1567,6 +1594,9 @@
       "&libraries=places&callback=initBookRideMaps";
     s.async = true;
     s.defer = true;
+    s.onerror = () => {
+      setMapsHelp("Google Maps failed to load. Check your API key restrictions (add your domain + localhost) and ensure Places API is enabled.");
+    };
     document.head.appendChild(s);
   })();
 </script>
