@@ -883,19 +883,13 @@
 
           <div class="note" id="br_price_note" style="margin-top:10px; border:1px solid rgba(214,177,94,.22); background:rgba(214,177,94,.10); padding:10px 12px; border-radius:14px;">Enter your name to calculate price.</div>
 
-          <div class="note" style="margin-top:8px;">
-            <strong>Pay Now:</strong> You will be redirected to Stripe Checkout. After successful payment, an internal email will be sent to dispatch (temporary).
-          </div>
+          <div class="note" style="margin-top:8px;">Secure checkout via Stripe.</div>
 
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
             <button class="btn" type="button" id="br_back_3">Back</button>
             <button class="btn primary" type="button" id="br_pay">Pay Now (Stripe)</button>
           </div>
-
-          <div class="help" style="margin-top:10px;">
-            Internal notification email (temporary): <span class="muted">mor1976@hotmail.com</span>
-          </div>
-        </div>
+</div>
       </div>
 
       <div class="panel">
@@ -1431,7 +1425,7 @@
 
       if(priceEl) priceEl.textContent = fmtMoney(total) + " CAD";
       if(subEl) subEl.textContent = (brDistanceText ? `Distance: ${brDistanceText}` : "Distance calculated");
-      if(noteEl) noteEl.textContent = details;
+      if(noteEl) noteEl.textContent = "Estimated total based on distance and selected options.";
     }
 
     async function createCheckoutSession(){
@@ -1555,7 +1549,7 @@
 <script>
   // Google Maps (Places) loader for Book a Ride
   // Uses the SAME key as index.html
-  const GOOGLE_MAPS_API_KEY = "AIzaSyD00hPzMmT1FEwkbxbRIZcl-8YaJIg9xv8";
+  const GOOGLE_MAPS_API_KEY = "AIza....";
   (function loadGoogleMapsPlaces(){
     if(!GOOGLE_MAPS_API_KEY){
       console.warn("Google Maps API key is missing.");
