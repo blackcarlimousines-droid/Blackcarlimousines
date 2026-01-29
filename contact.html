@@ -884,18 +884,9 @@
           </div>
 
           <div class="note" id="br_price_note" style="margin-top:10px; border:1px solid rgba(214,177,94,.22); background:rgba(214,177,94,.10); padding:10px 12px; border-radius:14px;">Enter your name to calculate price.</div>
-
-          <div class="note" style="margin-top:8px;">
-            <strong>Pay Now:</strong> You will be redirected to Stripe Checkout. After successful payment, an internal email will be sent to dispatch (temporary).
-          </div>
-
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
             <button class="btn" type="button" id="br_back_3">Back</button>
             <button class="btn primary" type="button" id="br_pay">Pay Now (Stripe)</button>
-          </div>
-
-          <div class="help" style="margin-top:10px;">
-            Internal notification email (temporary): <span class="muted">mor1976@hotmail.com</span>
           </div>
         </div>
       </div>
@@ -1028,10 +1019,9 @@
   (function(){
     // IMPORTANT:
     // - Pricing is calculated client-side (distance-based).
-    // - Payment should be done via a backend that creates a Stripe Checkout Session with a dynamic amount.
-    // - The backend should also send the post-payment email FROM sales@shrinxa.com TO mohr1976@hotmail.com.
-    //   (Client-side JavaScript cannot send email "from" your domain.)
-    const CREATE_CHECKOUT_ENDPOINT = "/api/create-checkout-session"; // you will implement on hosting (Vercel/Node)
+    // - Pay Now calls the Supabase Edge Function create-checkout-session which creates a Stripe Checkout Session.
+    // - After successful payment, Stripe webhook (Supabase) sends the internal order email (via Resend).
+    const CREATE_CHECKOUT_ENDPOINT = "https://jyiscxsccnitwifxzmjk.supabase.co/functions/v1/create-checkout-session";
     const CURRENCY = "cad";
 
 
@@ -1437,8 +1427,8 @@
 
       if(priceEl) priceEl.textContent = fmtMoney(total) + " CAD";
       if(subEl) subEl.textContent = (brDistanceText ? `Distance: ${brDistanceText}` : "Distance calculated");
-      if(noteEl) noteEl.textContent = details;
-    }
+      if(noteEl) noteEl.textContent = "Price calculated. Proceed to secure checkout.";
+}
 
     async function createCheckoutSession(){
       // Must have computed price
@@ -1467,8 +1457,7 @@
           customer_name: val('br_name') || "",
           customer_email: val('br_email') || "",
           customer_phone: val('br_phone') || "",
-          notify_to: "mohr1976@hotmail.com",
-          notify_from: "sales@shrinxa.com"
+          notify_to: "blackcarlimousines@gmail.com"
         }
       };
 
@@ -1491,7 +1480,7 @@
         window.location.href = data.url;
       }catch(err){
         console.warn(err);
-        alert("Stripe payment is not connected yet.\n\nYou need a backend endpoint at " + CREATE_CHECKOUT_ENDPOINT + " to create a Stripe Checkout Session with a dynamic price.");
+        alert("Could not start Stripe checkout. Please try again in a moment.");
       }
     }
 
