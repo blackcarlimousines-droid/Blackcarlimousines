@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-:root{
+    :root{
       --bg:#0b0b0f;
       --panel:#11111a;
       --panel2:#0f0f16;
@@ -181,7 +181,7 @@
       position:absolute; inset:0;
       background:
         linear-gradient(90deg, rgba(11,11,15,.92) 0%, rgba(11,11,15,.70) 45%, rgba(11,11,15,.25) 100%),
-        url("https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=2200&q=80");
+	url("main.png");
       background-size:cover;
       background-position:center;
       filter:saturate(1.05) contrast(1.02);
@@ -262,6 +262,12 @@
       letter-spacing:.2px;
     }
     .quote small{color:var(--muted)}
+
+    .quote-subtitle{
+      margin-top:8px;
+      margin-bottom:6px;
+      line-height:1.55;
+    }
     .quote .panel{
       position:relative;
       border:1px solid rgba(255,255,255,.10);
@@ -286,6 +292,32 @@
       outline:none;
       font-size:14px;
     }
+
+    /* Google Places dropdown (pac-container) styling to match dark theme */
+    .pac-container{
+      background: rgba(18,18,22,.98);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.55);
+      overflow: hidden;
+      z-index: 99999;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .pac-item{
+      padding: 10px 12px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+    }
+    .pac-item:hover{
+      background: rgba(214,177,94,.12);
+    }
+    .pac-item-query{
+      color: #fff;
+      font-weight: 700;
+    }
+    .pac-matched{
+      color: #fff;
+    }
     .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
     .quote .note{
       font-size:12px;
@@ -301,7 +333,8 @@
       border-radius:16px;
       border:1px solid rgba(214,177,94,.22);
       background:linear-gradient(180deg, rgba(214,177,94,.14), rgba(0,0,0,.12));
-    }
+    
+      margin-top:16px;}
     .price-box strong{
       font-family:"Playfair Display", serif;
       font-size:26px;
@@ -312,7 +345,8 @@
     }
     .quote .actions{
       display:flex; gap:10px; flex-wrap:wrap;
-    }
+    
+      margin-top:14px;}
 
     /* Sections */
     section{padding:34px 0}
@@ -445,7 +479,7 @@
       .grid-3{grid-template-columns:1fr}
       .fleet{grid-template-columns:1fr}
       .right{min-width:auto}
-      .topbar nav{display:none}
+      nav{display:none}
       .menu-btn{display:inline-flex}
       .phone{display:none}
     }
@@ -526,7 +560,7 @@
     /* Mobile: collapse nav, keep header clean */
     @media (max-width: 980px){
       .topbar-inner{flex-wrap:nowrap}
-      .topbar nav{display:none !important}
+      nav{display:none !important}
       .menu-btn{display:inline-flex !important}
       .header-contact{display:none !important}
       .brand strong{font-size:16px}
@@ -539,7 +573,7 @@
       .hero-card:before{
         background:
           linear-gradient(180deg, rgba(11,11,15,.82) 0%, rgba(11,11,15,.55) 55%, rgba(11,11,15,.30) 100%),
-          url("https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=2200&q=80");
+          url("main.png");
         background-size:cover;
         background-position:center;
       }
@@ -650,7 +684,8 @@
       min-height:230px;
       background:
         linear-gradient(90deg, rgba(11,11,15,.55), rgba(11,11,15,.15)),
-        url("https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=2000&q=80");
+url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fit=crop&w=2200&q=80");
+
       background-size:cover;
       background-position:center;
     }
@@ -694,375 +729,82 @@
       .alt-callout .media{min-height:190px}
     }
 
-
   
-
-    /* SERVICES PAGE (alternating layout like reference) */
-    .services-hero{padding:34px 0 18px}
-    .services-hero .wrap{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:var(--radius2);
-      background:
-        radial-gradient(900px 320px at 10% 0%, rgba(214,177,94,.16), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow:var(--shadow);
-      padding:22px;
-    }
-    .services-hero h1{
-      margin:12px 0 8px;
-      font-family:"Playfair Display", serif;
-      font-size:44px;
-      line-height:1.08;
-      letter-spacing:.2px;
-    }
-    .services-hero p{
-      margin:0;
-      color:rgba(255,255,255,.78);
-      max-width:820px;
-      line-height:1.75;
-      font-size:15px;
-    }
-
-    .service-list{padding:8px 0 44px}
-    .service-item{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:18px;
-      align-items:center;
-      margin-top:18px;
-    }
-    .service-item:nth-child(even){
-      grid-template-columns: .95fr 1.05fr;
-    }
-    .service-card{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:26px;
-      background:
-        radial-gradient(700px 280px at 10% 0%, rgba(214,177,94,.12), transparent 60%),
-        linear-gradient(180deg, rgba(17,17,26,.92), rgba(15,15,22,.92));
-      box-shadow:0 20px 60px rgba(0,0,0,.48);
-      padding:22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .service-card:after{
-      content:"";
-      position:absolute; inset:-1px;
-      border-radius:26px;
-      pointer-events:none;
-      background:linear-gradient(90deg, rgba(214,177,94,.18), transparent 30%, transparent 70%, rgba(214,177,94,.14));
-      mask:linear-gradient(#000, transparent);
-      opacity:.35;
-    }
-    .service-kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      color:rgba(255,255,255,.72);
-      font-weight:800;
-      letter-spacing:.38px;
-      text-transform:uppercase;
-      font-size:12px;
-      margin-bottom:8px;
-    }
-    .service-kicker .dot{width:8px;height:8px;border-radius:999px;background:var(--gold)}
-    .service-card h2{
-      margin:0 0 10px;
-      font-size:26px;
-      letter-spacing:.15px;
-    }
-    .service-card p{
-      margin:0;
-      color:rgba(255,255,255,.74);
-      font-size:14px;
-      line-height:1.75;
-      max-width:720px;
-    }
-    .svc-features{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px 14px;
-      margin:16px 0 16px;
-      padding:0;
-      list-style:none;
-      color:rgba(255,255,255,.75);
-      font-size:13px;
-    }
-    .svc-features li{
-      display:flex; gap:10px; align-items:flex-start;
-    }
-    .svc-features .b{
-      width:18px;height:18px;border-radius:6px;
-      display:grid; place-items:center;
-      background:rgba(214,177,94,.14);
-      border:1px solid rgba(214,177,94,.22);
-      flex:0 0 auto;
-      margin-top:1px;
-      font-size:12px;
-      color:var(--text);
-    }
-    .svc-actions{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    .svc-actions .btn{padding:12px 14px}
-    .svc-note{
-      margin-top:10px;
-      color:rgba(255,255,255,.62);
-      font-size:12px;
-      line-height:1.6;
-    }
-
-    .service-media{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:26px;
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
-      box-shadow:0 18px 55px rgba(0,0,0,.40);
-      min-height:260px;
-      position:relative;
-    }
-    .service-media .img{
-      position:absolute; inset:0;
-      background-size:cover;
-      background-position:center;
-      transform:scale(1.02);
-      filter:saturate(1.03) contrast(1.02);
-    }
-    .service-media:after{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(90deg, rgba(11,11,15,.18) 0%, rgba(11,11,15,.05) 55%, rgba(11,11,15,.00) 100%);
-      pointer-events:none;
-    }
-
-    /* Alternate: image on left for even items */
-    .service-item:nth-child(even) .service-media{order:1}
-    .service-item:nth-child(even) .service-card{order:2}
-
-    @media (max-width: 980px){
-      .services-hero h1{font-size:34px}
-      .service-item{grid-template-columns:1fr}
-      .service-item:nth-child(even){grid-template-columns:1fr}
-      .service-media{min-height:210px}
-      .svc-features{grid-template-columns:1fr}
-      .service-item:nth-child(even) .service-media,
-      .service-item:nth-child(even) .service-card{order:unset}
-    }
-
-    /* Mobile drawer menu */
-    /* Ensure mobile drawer links are visible (do NOT hide drawer nav) */
-    @media (max-width: 980px){
-      .mobile-drawer nav.mobile-links{display:grid !important}
-    }
-
+    /* Mobile slide-out menu */
     .mobile-overlay{
       position:fixed; inset:0;
       background:rgba(0,0,0,.55);
-      opacity:0; pointer-events:none;
-      transition:opacity .2s ease;
-      z-index:9998;
+      backdrop-filter: blur(6px);
+      display:none;
+      z-index:60;
     }
-    .mobile-overlay.show{opacity:1; pointer-events:auto}
-
     .mobile-drawer{
       position:fixed;
       top:0; right:0;
-      height:100vh;
-      width:min(86vw, 360px);
-      transform:translateX(102%);
-      transition:transform .22s ease;
-      z-index:9999;
+      height:100%;
+      width:min(86vw, 340px);
+      background:rgba(11,11,15,.98);
       border-left:1px solid rgba(255,255,255,.10);
-      background:rgba(11,11,15,.96);
-      backdrop-filter: blur(16px);
-      box-shadow: -18px 0 60px rgba(0,0,0,.55);
+      box-shadow:0 20px 60px rgba(0,0,0,.65);
+      transform:translateX(102%);
+      transition:.22s ease;
+      z-index:61;
       padding:16px;
       display:flex;
       flex-direction:column;
-      gap:14px;
+      gap:10px;
     }
-    .mobile-drawer.open{transform:translateX(0)}
-    .mobile-drawer .top{
+    .mobile-close{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      padding-bottom:10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
+      margin-bottom:6px;
     }
-    .mobile-drawer .top .b{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-    .mobile-drawer .top .b strong{
-      font-family:"Playfair Display", serif;
-      font-size:16px;
-      line-height:1.1;
-      letter-spacing:.2px;
-      display:block;
-    }
-    .mobile-drawer .top .b span{
-      display:block;
-      font-size:11px;
-      color:rgba(255,255,255,.62);
-      margin-top:2px;
-    }
-    .mobile-close{
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.9);
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-      font-weight:800;
-    }
-    .mobile-close:hover{background:rgba(255,255,255,.10)}
-    .mobile-links{
-      display:grid;
-      gap:8px;
-      padding-top:2px;
-    }
-    .mobile-links a{
+    .mobile-drawer a{
       padding:12px 12px;
-      border-radius:14px;
+      border-radius:12px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.04);
       color:rgba(255,255,255,.88);
       font-weight:700;
     }
-    .mobile-links a:hover{background:rgba(255,255,255,.08)}
-    .mobile-drawer .contact{
-      margin-top:auto;
-      border-top:1px solid rgba(255,255,255,.10);
-      padding-top:12px;
-      display:grid;
-      gap:10px;
-      color:rgba(255,255,255,.78);
-      font-size:13px;
+    .mobile-drawer a:hover{
+      background:rgba(255,255,255,.08);
+      color:#fff;
     }
-    .mobile-drawer .contact a{color:rgba(255,255,255,.86); text-decoration:none}
-    .mobile-drawer .contact a:hover{text-decoration:underline}
+    body.menu-open{overflow:hidden}
+    body.menu-open .mobile-overlay{display:block}
+    body.menu-open .mobile-drawer{transform:translateX(0)}
+    @media (min-width: 981px){
+      .mobile-overlay,.mobile-drawer{display:none !important}
+    }
 
-</style>
+  </style>
+
 <style>
-/* City photos (external, similar to Services page image loading) */
-.city-img{height:160px;background-position:center;background-size:cover;background-repeat:no-repeat;}
-.city-img--brampton{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1581141117898-2be4de754b12?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--hamilton{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1608473657422-12b9f339652c?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--kitchener-waterloo{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1702850764548-6caf3fcdf4e6?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--london{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1604842311343-ced6568172c0?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 80% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--markham{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1643434135114-2e05f698cf1f?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--mississauga {
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1563734769255-5fdadc94747b?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" );
-  background-size: cover !important; /* Force this rule */
-  background-position: center 110% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--niagara{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1559344465-ac6ad8e59943?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--oakville{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1737689387785-519e57e2a584?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--richmond-hill{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1662569055792-bc6d6682855f?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--toronto{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1603466184840-715063d3e1e3?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important; /* try 60% / 70% / 80% */
-  background-repeat: no-repeat
-}
-.city-img--vaughan{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1704925052388-070244d29a3a?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-.city-img--windsor{
-  height: 400px;
-  width: 100%;
-  background-image: url("https://images.unsplash.com/photo-1673828780152-48ba1d0f4afe?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=80&w=3000");
-  background-size: cover !important;
-  background-position: center 30% !important;
-  background-repeat: no-repeat !important;
-}
-</style>
-<style id="cities-mobile-img">
-@media (max-width: 680px){
-  .city-img,
-  .city-img--brampton,
-  .city-img--hamilton,
-  .city-img--kitchener-waterloo,
-  .city-img--london,
-  .city-img--markham,
-  .city-img--mississauga,
-  .city-img--niagara,
-  .city-img--oakville,
-  .city-img--richmond-hill,
-  .city-img--toronto,
-  .city-img--vaughan,
-  .city-img--windsor{
-    height:220px !important;
+  /* Cities page (no photos yet) */
+  .city-card{padding:0; overflow:hidden; transition:transform .2s ease, background .2s ease;}
+  .city-card:hover{transform:translateY(-2px); background:rgba(255,255,255,.05);}
+  .city-media{
+    height:190px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:
+      radial-gradient(700px 220px at 20% 0%, rgba(214,177,94,.18), transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.12));
+  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-}
+  .city-body{padding:14px;}
+  .city-name{font-size:16px;}
+  .city-sub{margin-top:6px;}
+  @media (max-width: 980px){
+    .city-media{height:170px;}
+  }
 </style>
+
 </head>
 <body>
 <header class="topbar">
@@ -1096,46 +838,44 @@
             <a href="tel:+16472219090">📞 (647) 221-9090</a>
           </div>
 <a class="btn primary" href="#quote">Get a Quote</a>
-          <button class="btn menu-btn" type="button" id="menuBtn" aria-label="Open menu">☰</button>
+          <button class="btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">☰</button>
         </div>
 
       </div>
     </div>
   </header>
-  <!-- Mobile Menu Drawer -->
-  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
-  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile menu">
-    <div class="top">
-      <a class="b" href="index.html" aria-label="Black Car Limousines Home">
+
+  <!-- Mobile Menu -->
+  <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
+  <aside id="mobileNav" class="mobile-drawer" aria-label="Mobile navigation">
+    <div class="mobile-close">
+      <div style="display:flex; align-items:center; gap:10px;">
         <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
-        <div style="min-width:0">
-          <strong>Black Car Limousines</strong>
-          <span>Luxury Chauffeur Service</span>
+        <div>
+          <div style="font-family:'Playfair Display',serif; font-weight:700; letter-spacing:.2px;">Black Car Limousines</div>
+          <div class="muted" style="font-size:12px;">Luxury Chauffeur Service in the GTA</div>
         </div>
-      </a>
-      <button class="mobile-close" type="button" id="menuClose" aria-label="Close menu">✕</button>
+      </div>
+      <button id="menuCloseBtn" class="btn" type="button" aria-label="Close menu">✕</button>
     </div>
 
-    <nav class="mobile-links" aria-label="Mobile primary">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="fleet.html">Fleet</a>
-      <a href="cities.html">Cities</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="fleet.html">Fleet</a>
+    <a href="cities.html">Cities</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
 
-    <div class="contact" aria-label="Mobile contact">
-      <div><span style="color:rgba(255,255,255,.60); font-weight:800; letter-spacing:.3px; text-transform:uppercase; font-size:11px;">Email</span><br>
-        <a href="mailto:info@blackcarlimousines.com">info@blackcarlimousines.com</a>
-      </div>
-      <div><span style="color:rgba(255,255,255,.60); font-weight:800; letter-spacing:.3px; text-transform:uppercase; font-size:11px;">Phone</span><br>
-        <a href="tel:+16472219090">+1 (647) 221-9090</a>
-      </div>
+    <div style="margin-top:auto; display:grid; gap:10px;">
+      <a class="btn primary" href="contact.html" style="text-align:center">Book a Ride</a>
+      <a class="btn" href="tel:+16472219090" style="text-align:center">Call (647) 221-9090</a>
     </div>
   </aside>
 
 
+  
+
+  <!-- Page hero -->
   <main class="hero" style="padding:26px 0 18px">
     <div class="container">
       <div class="card" style="padding:18px 18px; border-radius:var(--radius2); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.10); box-shadow:var(--shadow);">
@@ -1148,103 +888,105 @@
     </div>
   </main>
 
+  <!-- Cities grid -->
   <section style="padding-top:14px">
     <div class="container">
       <div class="grid-3">
-        
-        <a class="card" id="toronto" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--toronto"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Toronto</strong>
-            <div class="small muted" style="margin-top:6px">Airport transfers • Corporate • Events</div>
+
+        <!-- City images are loaded from local .jpg files in the same folder (filename = city name) -->
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Toronto</strong>
+            <div class="small muted city-sub">Airport transfers • Corporate • Events</div>
           </div>
         </a>
 
-        <a class="card" id="mississauga" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--mississauga"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Mississauga</strong>
-            <div class="small muted" style="margin-top:6px">Pearson runs • Downtown pickups • Meetings</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Mississauga</strong>
+            <div class="small muted city-sub">Pearson runs • Downtown pickups • Meetings</div>
           </div>
         </a>
 
-        <a class="card" id="brampton" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--brampton"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Brampton</strong>
-            <div class="small muted" style="margin-top:6px">Airport transfers • Family trips • Events</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Brampton</strong>
+            <div class="small muted city-sub">Airport transfers • Family trips • Events</div>
           </div>
         </a>
 
-        <a class="card" id="oakville" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--oakville"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Oakville</strong>
-            <div class="small muted" style="margin-top:6px">Harbour pickups • Corporate • Winery days</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Oakville</strong>
+            <div class="small muted city-sub">Harbour pickups • Corporate • Winery days</div>
           </div>
         </a>
 
-        <a class="card" id="vaughan" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--vaughan"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Vaughan</strong>
-            <div class="small muted" style="margin-top:6px">Business travel • Night outs • Groups</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Vaughan</strong>
+            <div class="small muted city-sub">Business travel • Night outs • Groups</div>
           </div>
         </a>
 
-        <a class="card" id="markham" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--markham"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Markham</strong>
-            <div class="small muted" style="margin-top:6px">Corporate • Conferences • Door-to-door</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Markham</strong>
+            <div class="small muted city-sub">Corporate • Conferences • Door-to-door</div>
           </div>
         </a>
 
-        <a class="card" id="richmond-hill" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--richmond-hill"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Richmond Hill</strong>
-            <div class="small muted" style="margin-top:6px">Evenings out • Corporate • Local trips</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Richmond Hill</strong>
+            <div class="small muted city-sub">Evenings out • Corporate • Local trips</div>
           </div>
         </a>
 
-        <a class="card" id="hamilton" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--hamilton"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Hamilton</strong>
-            <div class="small muted" style="margin-top:6px">Airport transfers • Events • Downtown</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Hamilton</strong>
+            <div class="small muted city-sub">Airport transfers • Events • Downtown</div>
           </div>
         </a>
 
-        <a class="card" id="niagara" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--niagara"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Niagara Falls</strong>
-            <div class="small muted" style="margin-top:6px">Falls tours • Wine country • Day trips</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Niagara Falls</strong>
+            <div class="small muted city-sub">Falls tours • Wine country • Day trips</div>
           </div>
         </a>
 
-        <a class="card" id="kitchener-waterloo" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--kitchener-waterloo"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Kitchener–Waterloo</strong>
-            <div class="small muted" style="margin-top:6px">Tech campuses • Corporate • Transfers</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Kitchener–Waterloo</strong>
+            <div class="small muted city-sub">Tech campuses • Corporate • Transfers</div>
           </div>
         </a>
 
-        <a class="card" id="london" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--london"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">London</strong>
-            <div class="small muted" style="margin-top:6px">City trips • Corporate • Airport runs</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">London</strong>
+            <div class="small muted city-sub">City trips • Corporate • Airport runs</div>
           </div>
         </a>
 
-        <a class="card" id="windsor" href="contact.html" style="padding:0; overflow:hidden">
-          <div class="city-img city-img--windsor"></div>
-          <div style="padding:14px">
-            <strong style="font-size:16px">Windsor</strong>
-            <div class="small muted" style="margin-top:6px">Cross-border style trips • Corporate • Events</div>
+        <a class="card city-card" href="contact.html">
+          <div class="city-media" aria-hidden="true"></div>
+          <div class="city-body">
+            <strong class="city-name">Windsor</strong>
+            <div class="small muted city-sub">Corporate • Events • Long-distance trips</div>
           </div>
         </a>
 
@@ -1329,43 +1071,358 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<script>
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // ========= Instant Quote (Google Places + distance pricing) =========
+  // IMPORTANT: Paste your Google Maps JavaScript API key (with Places + Distance Matrix enabled) below.
+  // Example: const GOOGLE_MAPS_API_KEY = "AIza....";
+  const GOOGLE_MAPS_API_KEY = "AIzaSyD00hPzMmT1FEwkbxbRIZcl-8YaJIg9xv8";
+
+  const els = {
+    pickup: document.getElementById("pickup"),
+    dropoff: document.getElementById("dropoff"),
+    vehicle: document.getElementById("vehicle"),
+    passengers: document.getElementById("passengers"),
+    rate: document.getElementById("rateDisplay"),
+    distance: document.getElementById("distanceDisplay"),
+    msg: document.getElementById("quoteMsg"),
+    calcBtn: document.getElementById("calcBtn"),
+    bookBtn: document.getElementById("bookBtn"),
+    hint: document.getElementById("quoteHint"),
+  };
+
+  let pickupPlace = null;
+  let dropoffPlace = null;
+  let lastKm = null;
+  let distanceSvc = null;
+
+  function showMsg(text){
+    els.msg.textContent = text;
+    els.msg.style.display = "block";
+  }
+  function clearMsg(){
+    els.msg.textContent = "";
+    els.msg.style.display = "none";
+  }
+
+  function money(n){
+    if (typeof n !== "number" || !isFinite(n)) return "—";
+    return "$" + n.toFixed(2);
+  }
+
+  function computePrice(vehicle, km){
+    if (typeof km !== "number" || !isFinite(km) || km <= 0) return null;
+
+    if (vehicle === "sedan"){
+      if (km < 25) return 50;
+      if (km <= 100) return km * 2;
+      return (100 * 2) + ((km - 100) * 1.75);
+    }
+
+    // suv
+    if (km < 30) return 75;
+    if (km <= 100) return km * 2.5;
+    return (100 * 2.5) + ((km - 100) * 2);
+  }
+
+  function enforcePassengerRules(){
+    const p = parseInt(els.passengers.value || "1", 10);
+
+    // 1–3: Sedan or SUV, 4–8: SUV only
+    const sedanOption = els.vehicle.querySelector('option[value="sedan"]');
+    if (!sedanOption) return;
+
+    if (p >= 4){
+      sedanOption.disabled = true;
+      els.vehicle.value = "suv";
+    } else {
+      sedanOption.disabled = false;
+    }
+  }
+
+  function updateDisplays(){
+    if (typeof lastKm === "number" && isFinite(lastKm)){
+      els.distance.textContent = lastKm.toFixed(1);
+      const price = computePrice(els.vehicle.value, lastKm);
+      els.rate.textContent = price == null ? "—" : money(price);
+    } else {
+      els.distance.textContent = "—";
+      els.rate.textContent = "—";
+    }
+  }
+
+  let geocoder = null;
+
+function geocodeAddress(address){
+  return new Promise((resolve, reject) => {
+    if (!address) return reject(new Error("EMPTY_ADDRESS"));
+    if (!geocoder) geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address }, (results, status) => {
+      if (status !== "OK" || !results || !results[0]){
+        return reject(new Error(status || "GEOCODE_FAILED"));
+      }
+      const r = results[0];
+      resolve({
+        place_id: r.place_id,
+        formatted_address: r.formatted_address || address,
+      });
+    });
+  });
+}
+
+async function ensurePlaceId(which){
+  const el = which === "pickup" ? els.pickup : els.dropoff;
+  let place = which === "pickup" ? pickupPlace : dropoffPlace;
+
+  if (place?.place_id) return place;
+
+  const raw = (el.value || "").trim();
+  if (!raw) return null;
+
+  try{
+    const geo = await geocodeAddress(raw);
+    const normalized = { place_id: geo.place_id, formatted_address: geo.formatted_address };
+    el.value = geo.formatted_address;
+    if (which === "pickup") pickupPlace = normalized;
+    else dropoffPlace = normalized;
+    return normalized;
+  }catch{
+    return null;
+  }
+}
+
+async function calculateDistanceAndPrice(){
+  clearMsg();
+  enforcePassengerRules();
+
+  // Must run on http(s) for Google APIs (and most API key restrictions rely on referrers)
+  if (location.protocol === "file:"){
+    showMsg("Google Maps needs http(s). Open this page via a local server (not file://) or host it online.");
+    return;
+  }
+
+  if (!distanceSvc){
+    showMsg("Google Maps is still loading. Please try again in a moment.");
+    return;
+  }
+
+  // Allow either: selecting from autocomplete OR typing (we'll geocode typed addresses)
+  const p = await ensurePlaceId("pickup");
+  const d = await ensurePlaceId("dropoff");
+
+  if (!p?.place_id || !d?.place_id){
+    showMsg("Please enter valid pickup and drop-off locations (select a suggestion or type a full address).");
+    return;
+  }
+
+  distanceSvc.getDistanceMatrix(
+    {
+      origins: [{ placeId: p.place_id }],
+      destinations: [{ placeId: d.place_id }],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+    },
+    (resp, status) => {
+      try{
+        if (status !== "OK"){
+          const extra = resp?.error_message ? (" " + resp.error_message) : "";
+          if (status === "REQUEST_DENIED"){
+            showMsg("Google Maps request was denied. Check your API key, billing, enabled APIs (Places + Distance Matrix), and HTTP referrer restrictions." + extra);
+          } else {
+            showMsg("Couldn't calculate distance (status: " + status + ")." + extra);
+          }
+          lastKm = null;
+          updateDisplays();
+          return;
+        }
+
+        const row = resp?.rows?.[0];
+        const el0 = row?.elements?.[0];
+
+        if (!el0 || el0.status !== "OK"){
+          const s = el0?.status || "UNKNOWN";
+          showMsg("Couldn't calculate distance. Try more specific addresses (status: " + s + ").");
+          lastKm = null;
+          updateDisplays();
+          return;
+        }
+
+        const meters = el0.distance.value;
+        const km = meters / 1000;
+        lastKm = km;
+
+        updateDisplays();
+      }catch{
+        showMsg("Couldn't calculate distance. Please try again.");
+        lastKm = null;
+        updateDisplays();
+      }
+    }
+  );
+}
+
+  // Called by Google Maps script
+  window.initQuote = function initQuote(){
+    try{
+      const opts = { fields: ["place_id", "formatted_address", "geometry", "name"] };
+      const acPickup = new google.maps.places.Autocomplete(els.pickup, opts);
+      const acDropoff = new google.maps.places.Autocomplete(els.dropoff, opts);
+
+      acPickup.addListener("place_changed", () => {
+        pickupPlace = acPickup.getPlace();
+        lastKm = null;
+        updateDisplays();
+        clearMsg();
+      });
+
+      acDropoff.addListener("place_changed", () => {
+        dropoffPlace = acDropoff.getPlace();
+        lastKm = null;
+        updateDisplays();
+        clearMsg();
+      });
+
+      distanceSvc = new google.maps.DistanceMatrixService();
+
+      // Hook UI
+
+// Reset saved places if user edits text manually
+const clearPlaces = () => { lastKm = null; updateDisplays(); };
+els.pickup.addEventListener("input", () => { pickupPlace = null; clearPlaces(); });
+els.dropoff.addEventListener("input", () => { dropoffPlace = null; clearPlaces(); });
+els.pickup.addEventListener("keydown", (e) => { if (e.key === "Enter"){ e.preventDefault(); calculateDistanceAndPrice(); } });
+els.dropoff.addEventListener("keydown", (e) => { if (e.key === "Enter"){ e.preventDefault(); calculateDistanceAndPrice(); } });
+      els.passengers.addEventListener("change", () => { enforcePassengerRules(); updateDisplays(); });
+      els.vehicle.addEventListener("change", () => { enforcePassengerRules(); updateDisplays(); });
+      els.calcBtn.addEventListener("click", calculateDistanceAndPrice);
+
+      els.bookBtn.addEventListener("click", () => {
+        // simple placeholder for now (keeps UI consistent)
+        alert("Thanks! Please contact us to finalize booking: info@blackcarlimousines.com");
+      });
+
+      enforcePassengerRules();
+      updateDisplays();
+
+      if (location.protocol === "file:"){
+        showMsg("Google Maps autocomplete won't work when opened as a file (file://). Open via a local server or hosted website.");
+      } else if (!GOOGLE_MAPS_API_KEY){
+        showMsg("Google Maps API key is missing. Add your key in the code (GOOGLE_MAPS_API_KEY) to enable address autocomplete.");
+      }
+    } catch (e){
+      showMsg("Google Maps failed to initialize. Check your API key and that the Places API is enabled.");
+    }
+  };
+
+  // Load Google Maps script (Places library)
+  (function loadGoogleMaps(){
+    if (!GOOGLE_MAPS_API_KEY){
+      // Still show UI; message will explain.
+      return;
+    }
+    const s = document.createElement("script");
+    s.src =
+      "https://maps.googleapis.com/maps/api/js?key=" +
+      encodeURIComponent(GOOGLE_MAPS_API_KEY) +
+      "&libraries=places&callback=initQuote";
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  })();
+</script>
 
   <script>
     (function(){
       const btn = document.getElementById("menuBtn");
-      const drawer = document.getElementById("mobileDrawer");
+      const closeBtn = document.getElementById("menuCloseBtn");
       const overlay = document.getElementById("mobileOverlay");
-      const closeBtn = document.getElementById("menuClose");
-
-      if(!btn || !drawer || !overlay || !closeBtn) return;
+      const drawer = document.getElementById("mobileNav");
+      if(!btn || !overlay || !drawer) return;
 
       function openMenu(){
-        drawer.classList.add("open");
-        overlay.classList.add("show");
-        document.body.style.overflow = "hidden";
+        document.body.classList.add("menu-open");
+        btn.setAttribute("aria-expanded", "true");
+        overlay.setAttribute("aria-hidden", "false");
       }
       function closeMenu(){
-        drawer.classList.remove("open");
-        overlay.classList.remove("show");
-        document.body.style.overflow = "";
+        document.body.classList.remove("menu-open");
+        btn.setAttribute("aria-expanded", "false");
+        overlay.setAttribute("aria-hidden", "true");
       }
 
-      btn.addEventListener("click", openMenu);
-      closeBtn.addEventListener("click", closeMenu);
+      btn.addEventListener("click", () => {
+        if(document.body.classList.contains("menu-open")) closeMenu();
+        else openMenu();
+      });
       overlay.addEventListener("click", closeMenu);
+      if(closeBtn) closeBtn.addEventListener("click", closeMenu);
 
-      drawer.querySelectorAll("a").forEach(a=>{
-        a.addEventListener("click", closeMenu);
+      drawer.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => closeMenu());
       });
 
-      document.addEventListener("keydown", (e)=>{
+      document.addEventListener("keydown", (e) => {
         if(e.key === "Escape") closeMenu();
       });
     })();
   </script>
+<script>
+  // Auto-load city images from local JPG files in the same folder.
+  // File naming: "Toronto.jpg", "Niagara Falls.jpg", etc.
+  (function () {
+    const overlay = "linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55))";
+
+    function uniq(arr) {
+      return Array.from(new Set(arr.filter(Boolean)));
+    }
+
+    function candidates(city) {
+      const c = city.trim();
+      const dashFixed = c.replace(/[–—]/g, "-");
+      return uniq([
+        c,
+        dashFixed,
+        dashFixed.replace(/\s+/g, "-"),
+        c.replace(/\s+/g, "-"),
+        c.replace(/\s+/g, "_"),
+      ]).map((v) => `${v}.jpg`);
+    }
+
+    function tryLoad(media, list) {
+      let i = 0;
+      const img = new Image();
+
+      function attempt() {
+        if (i >= list.length) return; // keep fallback gradient
+        const file = list[i];
+        img.onload = function () {
+          const url = encodeURI(file);
+          media.style.backgroundImage = `${overlay}, url("${url}")`;
+          media.style.backgroundSize = "cover";
+          media.style.backgroundPosition = "center";
+          media.style.backgroundRepeat = "no-repeat";
+        };
+        img.onerror = function () {
+          i += 1;
+          attempt();
+        };
+        img.src = encodeURI(file);
+      }
+
+      attempt();
+    }
+
+    document.querySelectorAll(".city-card").forEach((card) => {
+      const nameEl = card.querySelector(".city-name");
+      const media = card.querySelector(".city-media");
+      if (!nameEl || !media) return;
+      const city = nameEl.textContent || "";
+      tryLoad(media, candidates(city));
+    });
+  })();
+</script>
 
 </body>
 </html>
