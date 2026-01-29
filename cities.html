@@ -1039,62 +1039,24 @@
   background-repeat: no-repeat !important;
 }
 </style>
-<style id="cities-mobile-fixes">
-  /* MOBILE FIX (final):
-     1) Force the hamburger button to be visible on ALL phones by taking it out of the flex layout (fixed position).
-     2) Prevent header right-side elements from pushing it off-screen.
-     3) Reduce very tall city image blocks on mobile.
-  */
-
-  /* Always keep the hamburger visible on mobile */
-  @media (max-width: 980px){
-    /* Reserve space so brand text doesn't sit under the fixed hamburger */
-    .topbar .topbar-inner{ padding-right:64px !important; }
-
-    /* Take the hamburger out of flex so it can never be pushed off-screen */
-    #menuBtn{
-      display:inline-flex !important;
-      position:fixed !important;
-      top:14px !important;
-      right:16px !important;
-      z-index:10001 !important;
-    }
-
-    /* Hide the right-side CTA/contact on mobile (drawer has it) */
-    .topbar .right{ display:none !important; }
-
-    /* Let brand shrink nicely */
-    .topbar .brand{ min-width:0 !important; flex:1 1 auto !important; }
-    .topbar .brand strong{
-      font-size:16px !important;
-      white-space:nowrap !important;
-      overflow:hidden !important;
-      text-overflow:ellipsis !important;
-      max-width:100% !important;
-      display:block !important;
-    }
-    .topbar .brand span{ display:none !important; }
+<style id="cities-mobile-img">
+@media (max-width: 680px){
+  .city-img,
+  .city-img--brampton,
+  .city-img--hamilton,
+  .city-img--kitchener-waterloo,
+  .city-img--london,
+  .city-img--markham,
+  .city-img--mississauga,
+  .city-img--niagara,
+  .city-img--oakville,
+  .city-img--richmond-hill,
+  .city-img--toronto,
+  .city-img--vaughan,
+  .city-img--windsor{
+    height:220px !important;
   }
-
-  /* City images: don't use 400px height on phones */
-  @media (max-width: 680px){
-    .city-img{ height:220px !important; }
-    /* Override the per-city 400px rules */
-    .city-img--brampton,
-    .city-img--hamilton,
-    .city-img--kitchener-waterloo,
-    .city-img--london,
-    .city-img--markham,
-    .city-img--mississauga,
-    .city-img--niagara,
-    .city-img--oakville,
-    .city-img--richmond-hill,
-    .city-img--toronto,
-    .city-img--vaughan,
-    .city-img--windsor{
-      height:220px !important;
-    }
-  }
+}
 </style>
 </head>
 <body>
