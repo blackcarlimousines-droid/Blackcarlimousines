@@ -846,6 +846,98 @@
       .service-item:nth-child(even) .service-media,
       .service-item:nth-child(even) .service-card{order:unset}
     }
+
+    /* Mobile drawer menu */
+    .mobile-overlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      opacity:0; pointer-events:none;
+      transition:opacity .2s ease;
+      z-index:9998;
+    }
+    .mobile-overlay.show{opacity:1; pointer-events:auto}
+
+    .mobile-drawer{
+      position:fixed;
+      top:0; right:0;
+      height:100vh;
+      width:min(86vw, 360px);
+      transform:translateX(102%);
+      transition:transform .22s ease;
+      z-index:9999;
+      border-left:1px solid rgba(255,255,255,.10);
+      background:rgba(11,11,15,.96);
+      backdrop-filter: blur(16px);
+      box-shadow: -18px 0 60px rgba(0,0,0,.55);
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .mobile-drawer.open{transform:translateX(0)}
+    .mobile-drawer .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .mobile-drawer .top .b{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .mobile-drawer .top .b strong{
+      font-family:"Playfair Display", serif;
+      font-size:16px;
+      line-height:1.1;
+      letter-spacing:.2px;
+      display:block;
+    }
+    .mobile-drawer .top .b span{
+      display:block;
+      font-size:11px;
+      color:rgba(255,255,255,.62);
+      margin-top:2px;
+    }
+    .mobile-close{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .mobile-close:hover{background:rgba(255,255,255,.10)}
+    .mobile-links{
+      display:grid;
+      gap:8px;
+      padding-top:2px;
+    }
+    .mobile-links a{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.88);
+      font-weight:700;
+    }
+    .mobile-links a:hover{background:rgba(255,255,255,.08)}
+    .mobile-drawer .contact{
+      margin-top:auto;
+      border-top:1px solid rgba(255,255,255,.10);
+      padding-top:12px;
+      display:grid;
+      gap:10px;
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+    }
+    .mobile-drawer .contact a{color:rgba(255,255,255,.86); text-decoration:none}
+    .mobile-drawer .contact a:hover{text-decoration:underline}
+
 </style>
 <style>
 /* City photos (external, similar to Services page image loading) */
@@ -980,12 +1072,45 @@
             <a href="tel:+16472219090">📞 (647) 221-9090</a>
           </div>
 <a class="btn primary" href="#quote">Get a Quote</a>
-          <button class="btn menu-btn" type="button" onclick="alert('Mobile menu can be added next.')" aria-label="Open menu">☰</button>
+          <button class="btn menu-btn" type="button" id="menuBtn" aria-label="Open menu">☰</button>
         </div>
 
       </div>
     </div>
   </header>
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile menu">
+    <div class="top">
+      <a class="b" href="index.html" aria-label="Black Car Limousines Home">
+        <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
+        <div style="min-width:0">
+          <strong>Black Car Limousines</strong>
+          <span>Luxury Chauffeur Service</span>
+        </div>
+      </a>
+      <button class="mobile-close" type="button" id="menuClose" aria-label="Close menu">✕</button>
+    </div>
+
+    <nav class="mobile-links" aria-label="Mobile primary">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="fleet.html">Fleet</a>
+      <a href="cities.html">Cities</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="contact" aria-label="Mobile contact">
+      <div><span style="color:rgba(255,255,255,.60); font-weight:800; letter-spacing:.3px; text-transform:uppercase; font-size:11px;">Email</span><br>
+        <a href="mailto:info@blackcarlimousines.com">info@blackcarlimousines.com</a>
+      </div>
+      <div><span style="color:rgba(255,255,255,.60); font-weight:800; letter-spacing:.3px; text-transform:uppercase; font-size:11px;">Phone</span><br>
+        <a href="tel:+16472219090">+1 (647) 221-9090</a>
+      </div>
+    </div>
+  </aside>
+
 
   <main class="hero" style="padding:26px 0 18px">
     <div class="container">
@@ -1183,5 +1308,40 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+    (function(){
+      const btn = document.getElementById("menuBtn");
+      const drawer = document.getElementById("mobileDrawer");
+      const overlay = document.getElementById("mobileOverlay");
+      const closeBtn = document.getElementById("menuClose");
+
+      if(!btn || !drawer || !overlay || !closeBtn) return;
+
+      function openMenu(){
+        drawer.classList.add("open");
+        overlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMenu(){
+        drawer.classList.remove("open");
+        overlay.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      btn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
+      overlay.addEventListener("click", closeMenu);
+
+      drawer.querySelectorAll("a").forEach(a=>{
+        a.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("keydown", (e)=>{
+        if(e.key === "Escape") closeMenu();
+      });
+    })();
+  </script>
+
 </body>
 </html>
