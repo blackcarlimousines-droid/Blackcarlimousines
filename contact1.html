@@ -1,0 +1,1473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Black Car Limousines | GTA Airport Transfers & Chauffeur</title>
+  <meta name="description" content="Premium limousine and chauffeur service in the GTA. Airport transfers, corporate travel, weddings, events. Professional drivers. Luxury fleet. Book in minutes." />
+  <meta name="theme-color" content="#0b0b0f" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root{
+      --bg:#0b0b0f;
+      --panel:#11111a;
+      --panel2:#0f0f16;
+      --text:#f6f6f8;
+      --muted:#b9bcc6;
+      --line:rgba(255,255,255,.10);
+      --gold:#d6b15e;
+      --gold2:#b68a2e;
+      --shadow:0 24px 60px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius2:26px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(214,177,94,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(214,177,94,.10), transparent 55%),
+        linear-gradient(180deg, #07070a 0%, #0b0b0f 40%, #07070a 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--gold)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:13px 16px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:600;
+      transition:.2s ease;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09)}
+    .btn.primary{
+      background:linear-gradient(180deg, var(--gold) 0%, var(--gold2) 100%);
+      color:#0b0b0f;
+      border:0;
+      box-shadow:0 16px 40px rgba(214,177,94,.18);
+    }
+    .btn.primary:hover{filter:brightness(1.03)}
+    .btn.ghost{background:transparent}
+    .kbd{
+      font-size:12px;
+      padding:4px 8px;
+      border:1px solid var(--line);
+      border-bottom-color:rgba(255,255,255,.18);
+      border-radius:8px;
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+    }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background:rgba(11,11,15,.72);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width:220px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      background:
+        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.20), transparent 70%),
+        linear-gradient(180deg, rgba(214,177,94,.95), rgba(182,138,46,.95));
+      box-shadow:0 12px 26px rgba(214,177,94,.18);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:10px 12px;
+      border:2px solid rgba(11,11,15,.9);
+      border-radius:10px;
+      transform:skewX(-10deg);
+    }
+    .brand strong{
+      font-family:"Playfair Display", serif;
+      letter-spacing:.3px;
+      font-size:18px;
+      line-height:1;
+      display:block;
+    }
+    .brand span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+    nav{
+      display:flex; align-items:center; gap:18px;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+    }
+    nav a{padding:10px 10px; border-radius:10px}
+    nav a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .right{
+      display:flex; align-items:center; gap:10px;
+      justify-content:flex-end;
+      min-width:220px;
+    }
+    .phone{
+      display:none;
+      color:var(--muted);
+      font-size:13px;
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.04);
+    }
+    .menu-btn{display:none}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding:44px 0 30px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .hero-card{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
+      overflow:hidden;
+      background:
+        radial-gradient(800px 400px at 25% 0%, rgba(214,177,94,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      position:relative;
+      min-height:520px;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(11,11,15,.92) 0%, rgba(11,11,15,.70) 45%, rgba(11,11,15,.25) 100%),
+        url("https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=2200&q=80");
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.05) contrast(1.02);
+      transform:scale(1.02);
+    }
+    .hero-content{
+      position:relative;
+      padding:34px 34px 26px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .hero h1{
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      letter-spacing:.2px;
+      margin:14px 0 10px;
+      font-size:46px;
+      line-height:1.08;
+      max-width:650px;
+    }
+    .hero p{
+      margin:0;
+      color:rgba(255,255,255,.78);
+      max-width:620px;
+      font-size:16px;
+      line-height:1.7;
+    }
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top:14px;
+    }
+    .hero-badges{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:18px;
+      color:rgba(255,255,255,.68);
+      font-size:13px;
+    }
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);
+      padding:10px 12px;
+      border-radius:999px;
+      backdrop-filter:blur(10px);
+    }
+    .badge svg{opacity:.9}
+
+    /* Quick quote placeholder */
+    .quote{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
+      background:
+        radial-gradient(600px 300px at 20% 0%, rgba(214,177,94,.14), transparent 60%),
+        linear-gradient(180deg, rgba(17,17,26,.92), rgba(15,15,22,.92));
+      box-shadow:var(--shadow);
+      padding:18px;
+      min-height:520px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .quote:before{
+      content:"";
+      position:absolute;
+      width:520px;height:520px;
+      right:-320px; top:-320px;
+      background:radial-gradient(circle at 30% 30%, rgba(214,177,94,.22), transparent 60%);
+      filter:blur(2px);
+    }
+    .quote h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .quote small{color:var(--muted)}
+    .quote .panel{
+      position:relative;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      padding:14px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    .label{font-size:12px; color:var(--muted); font-weight:700; letter-spacing:.4px; text-transform:uppercase}
+    .input{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      padding:12px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .quote .note{
+      font-size:12px;
+      color:rgba(255,255,255,.70);
+      line-height:1.55;
+    }
+    .price-box{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(214,177,94,.22);
+      background:linear-gradient(180deg, rgba(214,177,94,.14), rgba(0,0,0,.12));
+    }
+    .price-box strong{
+      font-family:"Playfair Display", serif;
+      font-size:26px;
+      letter-spacing:.3px;
+    }
+    .price-box span{
+      font-size:12px; color:rgba(255,255,255,.75)
+    }
+    .quote .actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+
+    /* Sections */
+    section{padding:34px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom:16px;
+    }
+    .section-title h3{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size:28px;
+      letter-spacing:.2px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      max-width:560px;
+      line-height:1.6;
+      font-size:14px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+      padding:16px;
+      box-shadow:0 14px 40px rgba(0,0,0,.25);
+    }
+    .card h4{margin:10px 0 8px; font-size:16px}
+    .card p{margin:0; color:rgba(255,255,255,.72); font-size:14px; line-height:1.65}
+    .icon{
+      width:44px;height:44px;border-radius:14px;
+      display:grid; place-items:center;
+      background:rgba(214,177,94,.14);
+      border:1px solid rgba(214,177,94,.22);
+    }
+
+    /* Fleet */
+    .fleet{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .fleet .vehicle{
+      overflow:hidden;
+      padding:0;
+    }
+    .vehicle .media{
+      height:190px;
+      background-size:cover;
+      background-position:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .vehicle .body{padding:16px}
+    .vehicle .meta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:10px;
+      color:rgba(255,255,255,.72);
+      font-size:12px;
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.18);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+
+    /* Cities list */
+    .cities{
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+
+    /* CTA */
+    .cta{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius2);
+      padding:22px;
+      background:
+        radial-gradient(800px 300px at 20% 0%, rgba(214,177,94,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      overflow:hidden;
+      position:relative;
+    }
+    .cta:after{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius:var(--radius2);
+      pointer-events:none;
+      background:linear-gradient(90deg, rgba(214,177,94,.22), transparent 30%, transparent 70%, rgba(214,177,94,.18));
+      mask:linear-gradient(#000, transparent);
+      opacity:.35;
+    }
+    .cta h3{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size:26px;
+    }
+    .cta p{margin:8px 0 0; color:rgba(255,255,255,.74); line-height:1.6; max-width:560px}
+
+    /* Footer */
+    footer{
+      padding:26px 0 40px;
+      color:rgba(255,255,255,.62);
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:22px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap:18px;
+    }
+    .footer-grid a{color:rgba(255,255,255,.70)}
+    .footer-grid a:hover{color:var(--text)}
+    .small{font-size:13px; line-height:1.6}
+    .muted{color:var(--muted)}
+
+    /* Mobile */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-card,.quote{min-height:auto}
+      .hero h1{font-size:38px}
+      .grid-3{grid-template-columns:1fr}
+      .fleet{grid-template-columns:1fr}
+      .right{min-width:auto}
+      nav{display:none}
+      .menu-btn{display:inline-flex}
+      .phone{display:none}
+    }
+
+  /* Header contact + dropdown menus */
+    .header-contact{
+      display:flex; align-items:center; gap:14px;
+      color:var(--muted);
+      font-size:13px;
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+    .header-contact a{color:inherit; text-decoration:none}
+    .header-contact a:hover{color:var(--text)}
+    .header-contact .sep{opacity:.45}
+
+    @media (max-width: 980px){
+      .header-contact{display:none}
+    }
+
+  
+    /* Header layout fixes (prevent contact overlap) */
+    .topbar-inner{flex-wrap:wrap}
+    .brand{min-width:unset}
+    .right{min-width:unset; flex-wrap:wrap}
+    nav{flex:1; justify-content:center; flex-wrap:wrap}
+    .header-contact{
+      font-size:12px;
+      padding:8px 10px;
+      gap:10px;
+      max-width:520px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    @media (max-width: 1100px){
+      .header-contact{display:none}
+    }
+
+  
+    /* FINAL HEADER OVERRIDES (one-line menu + stacked contact) */
+    @media (min-width: 981px){
+      .topbar-inner{flex-wrap:nowrap !important}
+      nav{flex:0 0 auto !important; justify-content:center !important; flex-wrap:nowrap !important; white-space:nowrap !important}
+      nav a, nav .nav-link{white-space:nowrap !important}
+      nav{gap:14px !important}
+      .right{flex:0 0 auto !important; flex-wrap:nowrap !important}
+      .brand{flex:0 0 auto !important}
+    }
+
+    /* Contact box: email on top, phone under */
+    .header-contact{
+      display:flex !important;
+      flex-direction:column !important;
+      align-items:flex-start !important;
+      gap:4px !important;
+      line-height:1.2 !important;
+      max-width:none !important;
+      overflow:visible !important;
+      text-overflow:clip !important;
+      white-space:nowrap !important;
+    }
+    .header-contact .sep{display:none !important}
+
+  
+    /* RESPONSIVE FIT (desktop + mobile) */
+    /* Desktop: keep header on one line without overflow */
+    @media (min-width: 981px){
+      .topbar-inner{flex-wrap:nowrap}
+      nav{flex:1 1 auto; justify-content:center; flex-wrap:nowrap; white-space:nowrap}
+      .right{flex:0 0 auto}
+      .brand{flex:0 0 auto}
+      .container{max-width:var(--max)}
+    }
+
+    /* Mobile: collapse nav, keep header clean */
+    @media (max-width: 980px){
+      .topbar-inner{flex-wrap:nowrap}
+      nav{display:none !important}
+      .menu-btn{display:inline-flex !important}
+      .header-contact{display:none !important}
+      .brand strong{font-size:16px}
+      .brand span{font-size:11px}
+      .right{gap:8px}
+      .btn{padding:12px 14px}
+      .btn.primary{padding:12px 14px}
+      .hero{padding:28px 0 22px}
+      .hero h1{font-size:34px}
+      .hero-card:before{
+        background:
+          linear-gradient(180deg, rgba(11,11,15,.82) 0%, rgba(11,11,15,.55) 55%, rgba(11,11,15,.30) 100%),
+          url("main.png");
+        background-size:cover;
+        background-position:center;
+      }
+    }
+
+    /* Book a Ride (Contact page) */
+.book-ride{
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--radius2);
+  background:
+    radial-gradient(800px 360px at 15% 0%, rgba(214,177,94,.14), transparent 62%),
+    linear-gradient(180deg, rgba(17,17,26,.92), rgba(15,15,22,.92));
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.book-ride-header{
+  padding:18px 18px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+}
+.stepper{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-top:12px;
+}
+.stepper .line{
+  flex:1 1 auto;
+  height:2px;
+  margin-top:16px;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+}
+.step{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  min-width:160px;
+  text-align:center;
+}
+.step .num{
+  width:34px;height:34px;border-radius:999px;
+  display:grid; place-items:center;
+  font-weight:800;
+  border:2px solid rgba(255,255,255,.28);
+  color:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.06);
+}
+.step.active .num{
+  border-color:rgba(214,177,94,.95);
+  background:rgba(214,177,94,.18);
+  color:var(--text);
+}
+.step.done .num{
+  border-color:rgba(214,177,94,.95);
+  background:linear-gradient(180deg, rgba(214,177,94,.95), rgba(182,138,46,.95));
+  color:#0b0b0f;
+}
+.step .label2{
+  font-size:13px;
+  font-weight:800;
+  color:rgba(255,255,255,.90);
+  letter-spacing:.2px;
+}
+.step .hint{
+  font-size:12px;
+  color:rgba(255,255,255,.62);
+  line-height:1.35;
+  max-width:220px;
+}
+
+.book-ride-body{padding:18px}
+.book-grid{
+  display:grid;
+  grid-template-columns: 1fr .95fr;
+  gap:14px;
+  align-items:start;
+}
+.panel{
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  border-radius:16px;
+  padding:14px;
+}
+.panel h4{margin:0 0 10px; font-size:16px}
+.help{font-size:12px; color:rgba(255,255,255,.68); line-height:1.55; margin:8px 0 0}
+.req{color:rgba(214,177,94,.95)}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.hidden{display:none !important}
+
+.summary{
+  display:grid; gap:10px;
+}
+.summary .rowline{
+  display:flex; justify-content:space-between; gap:12px;
+  font-size:13px;
+  color:rgba(255,255,255,.80);
+  border-bottom:1px dashed rgba(255,255,255,.10);
+  padding-bottom:8px;
+}
+.summary .rowline:last-child{border-bottom:0; padding-bottom:0}
+.summary .rowline span{color:rgba(255,255,255,.62)}
+.summary .big{
+  font-family:"Playfair Display", serif;
+  font-size:22px;
+  letter-spacing:.2px;
+}
+
+@media (max-width: 980px){
+  .step{min-width:0; flex:1}
+  .stepper{gap:10px}
+  .stepper .line{margin-top:16px}
+  .book-grid{grid-template-columns:1fr}
+}
+
+    </style>
+</head>
+<body>
+<header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+	<a class="brand" href="index.html" aria-label="Black Car Limousines">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+	<strong>Black Car Limousines</strong>
+	<span>Luxury Chauffeur Service in the GTA</span>
+          </div>
+        </a>
+
+        
+        
+        <nav aria-label="Primary">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="services.html">Services</a>
+          <a class="nav-link" href="fleet.html">Fleet</a>
+          <a class="nav-link" href="cities.html">Cities</a>
+          <a class="nav-link" href="about.html">About</a>
+          <a class="nav-link" href="contact.html">Contact</a>
+        </nav>
+
+        
+        <div class="right">
+          
+          
+          <div class="header-contact" aria-label="Contact in header">
+            <a href="mailto:info@blackcarlimousines.com">✉️ info@blackcarlimousines.com</a>
+            <a href="tel:+16472219090">📞 (647) 221-9090</a>
+          </div>
+<a class="btn primary" href="index.html#quote">Get a Quote</a>
+          <button class="btn menu-btn" type="button" onclick="alert('Mobile menu can be added next.')" aria-label="Open menu">☰</button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="hero" style="padding:26px 0 18px">
+    <div class="container">
+      <div class="card" style="padding:18px 18px; border-radius:var(--radius2); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.10); box-shadow:var(--shadow);">
+        <div class="pill"><span class="dot"></span> Contact</div>
+        <h1 style="font-family:'Playfair Display',serif; margin:12px 0 8px; font-size:40px; line-height:1.12;">Contact Black Car Limousines</h1>
+        <p style="margin:0; color:rgba(255,255,255,.78); font-size:15px; line-height:1.75; max-width:900px;">
+          Call, text, or email us anytime. We respond fast for airport pickups, corporate rides, events, and VIP travel.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <section style="padding-top:14px">
+    <div class="container">
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon">📞</div>
+          <h4>Phone</h4>
+          <p><a href="tel:+16472219090" style="text-decoration:underline">+1 (647) 221-9090</a></p>
+          <p class="small muted">24/7 support</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">💬</div>
+          <h4>SMS / WhatsApp</h4>
+          <p><a href="sms:+16472219090" style="text-decoration:underline">Text: +1 (647) 221-9090</a></p>
+          <p><a href="https://wa.me/16472219090" style="text-decoration:underline">WhatsApp: +1 (647) 221-9090</a></p>
+        </div>
+
+        <div class="card">
+          <div class="icon">✉️</div>
+          <h4>Email</h4>
+          <p><a href="mailto:info@blackcarlimousines.com" style="text-decoration:underline">info@blackcarlimousines.com</a></p>
+          <p class="small muted">Send your pickup & destination</p>
+        </div>
+      </div>
+
+      
+<!-- Book a Ride -->
+<div class="book-ride" id="book-ride" style="margin-top:14px;">
+  <div class="book-ride-header">
+    <div class="pill"><span class="dot"></span> Book a Ride</div>
+    <div class="stepper" aria-label="Booking steps">
+      <div class="step active" data-step="1">
+        <div class="num">1</div>
+        <div class="label2">Enter Ride Details</div>
+        <div class="hint">Pickup, drop-off, and transfer type.</div>
+      </div>
+      <div class="line" aria-hidden="true"></div>
+      <div class="step" data-step="2">
+        <div class="num">2</div>
+        <div class="label2">Choose a Vehicle</div>
+        <div class="hint">Select the vehicle that fits your group.</div>
+      </div>
+      <div class="line" aria-hidden="true"></div>
+      <div class="step" data-step="3">
+        <div class="num">3</div>
+        <div class="label2">Place Order</div>
+        <div class="hint">Review price and pay now via Stripe.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-ride-body">
+    <div class="book-grid">
+      <div>
+        <div class="panel" id="br-step-1">
+          <h4>Ride details <span class="req">*</span></h4>
+
+          <div class="two">
+            <div class="field">
+              <div class="label">Pickup Date <span class="muted">(optional)</span></div>
+              <input class="input" id="br_date" type="date" />
+            </div>
+            <div class="field">
+              <div class="label">Pickup Time <span class="muted">(optional)</span></div>
+              <input class="input" id="br_time" type="time" />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">Pickup Location <span class="req">*</span></div>
+            <input class="input" id="br_pickup" type="text" placeholder="e.g., Toronto Pearson (YYZ), 6301 Silver Dart Dr" />
+          </div>
+
+          <div class="field">
+            <div class="label">Drop-Off Location <span class="req">*</span></div>
+            <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." />
+          </div>
+
+          <div class="two">
+            <div class="field">
+              <div class="label">Transfer Type</div>
+              <select class="input" id="br_transfer">
+                <option value="one_way" selected>One Way</option>
+                <option value="round_trip">Round Trip</option>
+              </select>
+            </div>
+            <div class="field">
+              <div class="label">Extra Waiting Hours <span class="muted">(round trip only)</span></div>
+              <select class="input" id="br_wait">
+                <option value="0" selected>No Waiting</option>
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <option value="4">4 hours</option>
+                <option value="5">5 hours</option>
+                <option value="6">6 hours</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="help">Fields marked with <span class="req">*</span> are required.</div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+            <button class="btn primary" type="button" id="br_next_1">Continue</button>
+            <a class="btn" href="fleet.html">View Fleet</a>
+          </div>
+        </div>
+
+        <div class="panel hidden" id="br-step-2">
+          <h4>Choose a vehicle <span class="req">*</span></h4>
+
+          <div class="field">
+            <div class="label">Vehicle</div>
+            <select class="input" id="br_vehicle">
+              <option value="" selected disabled>Select a vehicle</option>
+              <option value="sedan">Sedan (1–3 passengers)</option>
+              <option value="suv">SUV (1–8 passengers)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <div class="label">Passengers <span class="muted">(optional)</span></div>
+            <input class="input" id="br_passengers" type="number" min="1" max="8">
+          </div>
+
+          <div class="help">We’ll match you with the best option if you’re not sure.</div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+            <button class="btn" type="button" id="br_back_2">Back</button>
+            <button class="btn primary" type="button" id="br_next_2">Continue</button>
+          </div>
+        </div>
+
+        <div class="panel hidden" id="br-step-3">
+          <h4>Place order</h4>
+
+          <div class="two">
+            <div class="field">
+              <div class="label">Customer Name <span class="muted">(optional)</span></div>
+              <input class="input" id="br_name" type="text" placeholder="Your full name" />
+            </div>
+            <div class="field">
+              <div class="label">Phone <span class="muted">(optional)</span></div>
+              <input class="input" id="br_phone" type="tel" placeholder="e.g., (647) 000-0000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">Email <span class="muted">(optional)</span></div>
+            <input class="input" id="br_email" type="email" placeholder="you@email.com" />
+          </div>
+
+          <div class="note" id="br_price_note" style="margin-top:10px; border:1px solid rgba(214,177,94,.22); background:rgba(214,177,94,.10); padding:10px 12px; border-radius:14px;">Enter your name to calculate price.</div>
+
+          <div class="note" style="margin-top:8px;">
+            <strong>Pay Now:</strong> You will be redirected to Stripe Checkout. After successful payment, an internal email will be sent to dispatch (temporary).
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+            <button class="btn" type="button" id="br_back_3">Back</button>
+            <button class="btn primary" type="button" id="br_pay">Pay Now (Stripe)</button>
+          </div>
+
+          <div class="help" style="margin-top:10px;">
+            Internal notification email (temporary): <span class="muted">mor1976@hotmail.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Summary</h4>
+        <div class="summary">
+          <div class="rowline"><span>Pickup</span><div id="br_sum_pickup">—</div></div>
+          <div class="rowline"><span>Drop-off</span><div id="br_sum_dropoff">—</div></div>
+          <div class="rowline"><span>Distance</span><div id="br_sum_distance">—</div></div>
+          <div class="rowline"><span>Date / Time</span><div id="br_sum_dt">—</div></div>
+          <div class="rowline"><span>Transfer</span><div id="br_sum_transfer">One Way</div></div>
+          <div class="rowline"><span>Waiting</span><div id="br_sum_wait">No Waiting</div></div>
+          <div class="rowline"><span>Vehicle</span><div id="br_sum_vehicle">—</div></div>
+          <div class="rowline"><span>Passengers</span><div id="br_sum_passengers">—</div></div>
+          <div class="rowline"><span>Customer</span><div id="br_sum_customer">—</div></div>
+          <div class="rowline"><span>Contact</span><div id="br_sum_contact">—</div></div>
+        </div>
+
+        <div class="price-box" style="margin-top:12px;">
+          <div>
+            <div class="muted" style="font-size:12px; font-weight:800; letter-spacing:.35px; text-transform:uppercase;">Pricing</div>
+            <strong class="big" id="br_price_display">—</strong>
+          </div>
+          <div style="text-align:right">
+            <span id="br_price_sub">Enter your name to calculate</span>
+          </div>
+        </div>
+
+        <div class="help" style="margin-top:10px;">
+          Tip: If you need airport pickup, include terminal/airline in the pickup location.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="card" style="margin-top:14px">
+        <h4>Address</h4>
+        <p class="small" style="margin-top:8px">
+          7 Questor Court, Hamilton, ON, L8W 1K3, Canada
+        </p>
+        <p class="small muted" style="margin-top:10px">
+          (Optional next) We can embed a Google Map here.
+        </p>
+      </div>
+
+      <div class="cta" style="margin-top:18px;">
+        <div>
+          <h3>Want a quote now?</h3>
+          <p>Use the instant quote on the home page and request booking in seconds.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="index.html#quote">Get a Quote</a>
+          <a class="btn" href="fleet.html">View Fleet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
+            <div>
+	<strong style="font-family:'Playfair Display',serif; font-size:16px;">Black Car Limousines</strong>
+              <div class="small muted">GTA Chauffeur & Airport Transfers</div>
+            </div>
+          </div>
+          <div class="small">
+            Premium service, professional chauffeurs, and transparent pricing. Designed for airport travel, corporate clients, and special events.
+          </div>
+        </div>
+
+        <div>
+          <strong>Quick links</strong>
+          <div class="small" style="margin-top:10px; display:grid; gap:8px;">
+            <a href="services.html">Services</a>
+            <a href="fleet.html">Fleet</a>
+            <a href="index.html#quote">Instant Quote</a>
+            <a href="about.html#how">How it works</a>
+          </div>
+        </div>
+
+        <div>
+          <strong>Contact</strong>
+     <div class="small" style="margin-top:10px; display:grid; gap:10px;">
+  <div>
+    <div class="muted" style="font-weight:700;">Phone</div>
+    <a href="tel:+16472219090" style="text-decoration:underline">+1 (647) 221-9090</a>
+  </div>
+
+  <div>
+    <div class="muted" style="font-weight:700;">SMS</div>
+    <a href="sms:+16472219090" style="text-decoration:underline">+1 (647) 221-9090</a>
+  </div>
+
+  <div>
+    <div class="muted" style="font-weight:700;">WhatsApp</div>
+    <a href="https://wa.me/16472219090" style="text-decoration:underline">+1 (647) 221-9090</a>
+  </div>
+
+  <div>
+    <div class="muted" style="font-weight:700;">Email</div>
+    <a href="mailto:info@blackcarlimousines.com" style="text-decoration:underline">info@blackcarlimousines.com</a>
+  </div>
+
+  <div>
+    <div class="muted" style="font-weight:700;">Address</div>
+    <div>7 Questor Court, Hamilton, ON, L8W 1K3, Canada</div>
+  </div>
+</div>
+
+            <div class="muted">24/7 — GTA & surrounding areas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small muted" style="margin-top:18px; text-align:center;">
+        © <span id="year"></span> Elite Limo. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+
+<script>
+  // Book a Ride (Contact page)
+  (function(){
+    // IMPORTANT:
+    // - Pricing is calculated client-side (distance-based).
+    // - Payment should be done via a backend that creates a Stripe Checkout Session with a dynamic amount.
+    // - The backend should also send the post-payment email FROM sales@shrinxa.com TO mohr1976@hotmail.com.
+    //   (Client-side JavaScript cannot send email "from" your domain.)
+    const CREATE_CHECKOUT_ENDPOINT = "/api/create-checkout-session"; // you will implement on hosting (Vercel/Node)
+    const CURRENCY = "cad";
+
+    const stepEls = Array.from(document.querySelectorAll('.stepper .step'));
+    const stepPanels = {
+      1: document.getElementById('br-step-1'),
+      2: document.getElementById('br-step-2'),
+      3: document.getElementById('br-step-3'),
+    };
+
+    const el = (id)=>document.getElementById(id);
+    const val = (id)=> (el(id)?.value || "").trim();
+    const setText = (id, text)=>{ const n=el(id); if(n) n.textContent = text; };
+
+    let lastDistanceKey = "";
+    let brDistanceKm = null;
+    let brDistanceText = "";
+    let brPriceTotal = null;
+
+    function currentDateTime(){
+      const d = val('br_date');
+      const t = val('br_time');
+      if(!d && !t) return "—";
+      if(d && t) return `${d} ${t}`;
+      return d || t;
+    }
+
+    function transferLabel(){
+      const t = val('br_transfer') || "one_way";
+      return t === "round_trip" ? "Round Trip" : "One Way";
+    }
+
+    function vehicleLabel(){
+      const v = val('br_vehicle');
+      if(v === "suv") return "SUV (1–8 passengers)";
+      if(v === "sedan") return "Sedan (1–3 passengers)";
+      return "—";
+    }
+
+    function waitHours(){
+      const w = parseInt(val('br_wait') || "0", 10);
+      return Number.isFinite(w) ? w : 0;
+    }
+
+    function passengersCount(){
+      const p = parseInt(val('br_passengers') || "", 10);
+      return Number.isFinite(p) ? p : null;
+    }
+
+    function enforcePassengerRules(){
+      const p = passengersCount();
+
+      const vehicleSelect = el("br_vehicle");
+      if(!vehicleSelect) return;
+
+      // Enable both by default
+      const sedanOpt = Array.from(vehicleSelect.options).find(o => o.value === "sedan");
+      const suvOpt = Array.from(vehicleSelect.options).find(o => o.value === "suv");
+
+      if(sedanOpt) sedanOpt.disabled = false;
+      if(suvOpt) suvOpt.disabled = false;
+
+      if(p && p > 3){
+        // 4–8 passengers => SUV only
+        if(sedanOpt) sedanOpt.disabled = true;
+        if(val("br_vehicle") === "sedan") vehicleSelect.value = "suv";
+      }
+      if(p && p > 8){
+        el("br_passengers").value = "8";
+      }
+    }
+
+    function enforceWaitingRules(){
+      const t = val("br_transfer") || "one_way";
+      const waitSel = el("br_wait");
+      if(!waitSel) return;
+
+      if(t !== "round_trip"){
+        waitSel.value = "0";
+        waitSel.disabled = true;
+      } else {
+        waitSel.disabled = false;
+      }
+    }
+
+    function refreshSummary(){
+      setText('br_sum_pickup', val('br_pickup') || "—");
+      setText('br_sum_dropoff', val('br_dropoff') || "—");
+      setText('br_sum_dt', currentDateTime());
+      setText('br_sum_transfer', transferLabel());
+      setText('br_sum_wait', (val('br_transfer') === "round_trip") ? (waitHours() ? `${waitHours()} hour(s)` : "No Waiting") : "—");
+      setText('br_sum_vehicle', vehicleLabel());
+      setText('br_sum_passengers', val('br_passengers') || "—");
+
+      const name = val('br_name');
+      setText('br_sum_customer', name || "—");
+
+      const email = val('br_email');
+      const phone = val('br_phone');
+      const parts = [];
+      if(email) parts.push(email);
+      if(phone) parts.push(phone);
+      setText('br_sum_contact', parts.length ? parts.join(" • ") : "—");
+
+      setText('br_sum_distance', brDistanceText || "—");
+    }
+
+    function setStep(n){
+      Object.keys(stepPanels).forEach(k=>{
+        const kk = Number(k);
+        stepPanels[kk].classList.toggle('hidden', kk !== n);
+      });
+
+      stepEls.forEach(node=>{
+        const s = Number(node.getAttribute('data-step'));
+        node.classList.toggle('active', s === n);
+        node.classList.toggle('done', s < n);
+      });
+
+      refreshSummary();
+      const anchor = document.getElementById('book-ride');
+      if(anchor) anchor.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function requiredOk(){
+      const pickup = val('br_pickup');
+      const dropoff = val('br_dropoff');
+      if(!pickup || !dropoff){
+        alert("Please enter both Pickup Location and Drop-Off Location.");
+        return false;
+      }
+      return true;
+    }
+
+    function vehicleOk(){
+      const vehicle = val('br_vehicle');
+      if(!vehicle){
+        alert("Please select a vehicle to continue.");
+        return false;
+      }
+      return true;
+    }
+
+    async function geocodeAddress(address){
+      return await new Promise((resolve, reject)=>{
+        const geo = new google.maps.Geocoder();
+        geo.geocode({ address }, (results, status)=>{
+          if(status === "OK" && results && results[0] && results[0].geometry && results[0].geometry.location){
+            resolve(results[0].geometry.location);
+          }else{
+            reject(new Error("Geocode failed: " + status));
+          }
+        });
+      });
+    }
+
+    async function getOriginDestLatLng(){
+      const pickupStr = val("br_pickup");
+      const dropoffStr = val("br_dropoff");
+
+      let o = null;
+      let d = null;
+
+      if(brPickupPlace && brPickupPlace.geometry && brPickupPlace.geometry.location){
+        o = brPickupPlace.geometry.location;
+      } else {
+        o = await geocodeAddress(pickupStr);
+      }
+
+      if(brDropoffPlace && brDropoffPlace.geometry && brDropoffPlace.geometry.location){
+        d = brDropoffPlace.geometry.location;
+      } else {
+        d = await geocodeAddress(dropoffStr);
+      }
+
+      return { o, d };
+    }
+
+    async function computeDistanceKm(){
+      if(!window.google || !google.maps || !google.maps.DistanceMatrixService){
+        throw new Error("Google Maps not loaded.");
+      }
+
+      const pickupStr = val("br_pickup");
+      const dropoffStr = val("br_dropoff");
+      const key = `${pickupStr}|||${dropoffStr}`;
+
+      if(key === lastDistanceKey && brDistanceKm != null){
+        return brDistanceKm;
+      }
+
+      const { o, d } = await getOriginDestLatLng();
+
+      const service = new google.maps.DistanceMatrixService();
+      const resp = await new Promise((resolve, reject)=>{
+        service.getDistanceMatrix({
+          origins: [o],
+          destinations: [d],
+          travelMode: google.maps.TravelMode.DRIVING,
+          unitSystem: google.maps.UnitSystem.METRIC
+        }, (res, status)=>{
+          if(status !== "OK") return reject(new Error("DistanceMatrix failed: " + status));
+          resolve(res);
+        });
+      });
+
+      const element = resp?.rows?.[0]?.elements?.[0];
+      if(!element || element.status !== "OK"){
+        throw new Error("Could not calculate distance between these locations.");
+      }
+
+      const meters = element.distance?.value;
+      const text = element.distance?.text;
+
+      if(!meters || meters <= 0) throw new Error("Invalid distance returned.");
+
+      brDistanceKm = meters / 1000;
+      brDistanceText = text || (brDistanceKm.toFixed(1) + " km");
+      lastDistanceKey = key;
+
+      refreshSummary();
+      return brDistanceKm;
+    }
+
+    function calcOneWayPrice(vehicle, km){
+      // vehicle: "sedan" | "suv"
+      if(!km || km <= 0) return null;
+
+      let total = 0;
+      let breakdown = "";
+
+      if(vehicle === "sedan"){
+        if(km < 25){
+          total = 50;
+          breakdown = `Sedan flat rate (under 25km): $50`;
+        } else if(km <= 100){
+          total = km * 2;
+          breakdown = `Sedan rate (25–100km): $2.00/km × ${km.toFixed(1)}km`;
+        } else {
+          const over = km - 100;
+          total = 100 * 2 + over * 1.75;
+          breakdown = `Sedan: first 100km @ $2.00/km + ${over.toFixed(1)}km @ $1.75/km`;
+        }
+      } else if(vehicle === "suv"){
+        if(km < 30){
+          total = 75;
+          breakdown = `SUV flat rate (under 30km): $75`;
+        } else if(km <= 100){
+          total = km * 2.5;
+          breakdown = `SUV rate (30–100km): $2.50/km × ${km.toFixed(1)}km`;
+        } else {
+          const over = km - 100;
+          total = 100 * 2.5 + over * 2;
+          breakdown = `SUV: first 100km @ $2.50/km + ${over.toFixed(1)}km @ $2.00/km`;
+        }
+      } else {
+        return null;
+      }
+
+      return { total, breakdown };
+    }
+
+    function fmtMoney(n){
+      return "$" + n.toFixed(2);
+    }
+
+    async function updatePricingIfReady(){
+      enforcePassengerRules();
+      enforceWaitingRules();
+
+      const name = val("br_name");
+      const priceEl = el("br_price_display");
+      const subEl = el("br_price_sub");
+      const noteEl = el("br_price_note");
+
+      if(!name){
+        brPriceTotal = null;
+        if(priceEl) priceEl.textContent = "—";
+        if(subEl) subEl.textContent = "Enter your name to calculate";
+        if(noteEl) noteEl.textContent = "Enter your name to calculate price.";
+        return;
+      }
+
+      if(!requiredOk()){
+        brPriceTotal = null;
+        if(subEl) subEl.textContent = "Add pickup & drop-off to calculate";
+        if(noteEl) noteEl.textContent = "Add pickup & drop-off to calculate price.";
+        return;
+      }
+
+      if(!val("br_vehicle")){
+        brPriceTotal = null;
+        if(subEl) subEl.textContent = "Select a vehicle to calculate";
+        if(noteEl) noteEl.textContent = "Select a vehicle to calculate price.";
+        return;
+      }
+
+      // Compute distance (driving)
+      let km = null;
+      try{
+        subEl && (subEl.textContent = "Calculating distance…");
+        km = await computeDistanceKm();
+      }catch(e){
+        brPriceTotal = null;
+        if(priceEl) priceEl.textContent = "—";
+        if(subEl) subEl.textContent = "Distance not available";
+        if(noteEl) noteEl.textContent = "Could not calculate distance. Please choose valid pickup & drop-off from Google suggestions.";
+        return;
+      }
+
+      const vehicle = val("br_vehicle");
+      const oneWay = calcOneWayPrice(vehicle, km);
+      if(!oneWay){
+        brPriceTotal = null;
+        if(priceEl) priceEl.textContent = "—";
+        if(subEl) subEl.textContent = "Pricing not available";
+        if(noteEl) noteEl.textContent = "Pricing could not be calculated.";
+        return;
+      }
+
+      const t = val("br_transfer") || "one_way";
+      let total = oneWay.total;
+      let details = oneWay.breakdown;
+
+      if(t === "round_trip"){
+        total = total * 2;
+        details = `Round Trip = (One Way × 2). ${details}`;
+
+        const w = waitHours();
+        if(w > 0){
+          total += (w * 30);
+          details += ` + Waiting: $30 × ${w} hour(s)`;
+        }
+      }
+
+      brPriceTotal = total;
+
+      if(priceEl) priceEl.textContent = fmtMoney(total) + " CAD";
+      if(subEl) subEl.textContent = (brDistanceText ? `Distance: ${brDistanceText}` : "Distance calculated");
+      if(noteEl) noteEl.textContent = details;
+    }
+
+    async function createCheckoutSession(){
+      // Must have computed price
+      if(brPriceTotal == null){
+        await updatePricingIfReady();
+      }
+      if(brPriceTotal == null){
+        alert("Price is not ready yet. Please enter your name and make sure pickup/drop-off are valid.");
+        return;
+      }
+
+      const payload = {
+        currency: CURRENCY,
+        amount_cents: Math.round(brPriceTotal * 100),
+        booking: {
+          pickup: val('br_pickup') || "",
+          dropoff: val('br_dropoff') || "",
+          pickup_place_id: brPickupPlace?.place_id || "",
+          dropoff_place_id: brDropoffPlace?.place_id || "",
+          distance_km: brDistanceKm,
+          transfer_type: val('br_transfer') || "one_way",
+          waiting_hours: (val('br_transfer') === "round_trip") ? waitHours() : 0,
+          vehicle: val('br_vehicle') || "",
+          passengers: passengersCount() || "",
+          pickup_datetime: currentDateTime(),
+          customer_name: val('br_name') || "",
+          customer_email: val('br_email') || "",
+          customer_phone: val('br_phone') || "",
+          notify_to: "mohr1976@hotmail.com",
+          notify_from: "sales@shrinxa.com"
+        }
+      };
+
+      try{
+        const res = await fetch(CREATE_CHECKOUT_ENDPOINT, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(payload)
+        });
+
+        if(!res.ok){
+          throw new Error("Checkout endpoint error: " + res.status);
+        }
+
+        const data = await res.json();
+        if(!data || !data.url){
+          throw new Error("Invalid response from checkout endpoint.");
+        }
+
+        window.location.href = data.url;
+      }catch(err){
+        console.warn(err);
+        alert("Stripe payment is not connected yet.\n\nYou need a backend endpoint at " + CREATE_CHECKOUT_ENDPOINT + " to create a Stripe Checkout Session with a dynamic price.");
+      }
+    }
+
+    // Bind inputs to summary + pricing
+    [
+      'br_date','br_time',
+      'br_pickup','br_dropoff',
+      'br_transfer','br_wait',
+      'br_vehicle','br_passengers',
+      'br_name','br_phone','br_email'
+    ].forEach(id=>{
+      const node = el(id);
+      if(!node) return;
+
+      node.addEventListener('input', ()=>{
+        enforcePassengerRules();
+        enforceWaitingRules();
+        refreshSummary();
+        updatePricingIfReady();
+      });
+      node.addEventListener('change', ()=>{
+        enforcePassengerRules();
+        enforceWaitingRules();
+        refreshSummary();
+        updatePricingIfReady();
+      });
+    });
+
+    // Buttons
+    el('br_next_1')?.addEventListener('click', ()=>{
+      if(!requiredOk()) return;
+      setStep(2);
+    });
+    el('br_back_2')?.addEventListener('click', ()=> setStep(1));
+    el('br_next_2')?.addEventListener('click', ()=>{
+      enforcePassengerRules();
+      if(!vehicleOk()) return;
+      setStep(3);
+      updatePricingIfReady();
+    });
+    el('br_back_3')?.addEventListener('click', ()=> setStep(2));
+
+    el('br_pay')?.addEventListener('click', async ()=>{
+      if(!requiredOk()) return;
+      if(!vehicleOk()) return;
+
+      // must have name to calculate
+      if(!val("br_name")){
+        alert("Please enter Customer Name to calculate the price.");
+        return;
+      }
+
+      await updatePricingIfReady();
+      await createCheckoutSession();
+    });
+
+    // Initialize rules
+    enforceWaitingRules();
+    refreshSummary();
+    setStep(1);
+  })();</script>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
