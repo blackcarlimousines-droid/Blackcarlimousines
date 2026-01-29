@@ -535,6 +535,13 @@
       .btn{padding:12px 14px}
       .btn.primary{padding:12px 14px}
       .right .btn.primary{display:none !important}
+      /* Mobile header: ensure hamburger always visible (prevents brand pushing it off-screen) */
+      .brand{min-width:0 !important; flex:1 1 auto !important}
+      .brand > div{min-width:0 !important}
+      .right{flex:0 0 auto !important; min-width:unset !important}
+      .menu-btn{flex:0 0 auto !important}
+      .topbar-inner{gap:10px !important}
+
       .hero{padding:28px 0 22px}
       .hero h1{font-size:34px}
       .hero-card:before{
