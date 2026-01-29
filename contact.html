@@ -294,7 +294,7 @@
       border-radius: 14px;
       box-shadow: 0 18px 40px rgba(0,0,0,.55);
       overflow: hidden;
-      z-index: 9999;
+      z-index: 99999;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
     .pac-item{
@@ -799,12 +799,12 @@
 
           <div class="field">
             <div class="label">Pickup Location <span class="req">*</span></div>
-            <input class="input" id="br_pickup" type="text" placeholder="e.g., Toronto Pearson (YYZ), 6301 Silver Dart Dr" />
+            <input class="input" id="br_pickup" type="text" placeholder="e.g., Toronto Pearson (YYZ), 6301 Silver Dart Dr" / autocomplete="off">
           </div>
 
           <div class="field">
             <div class="label">Drop-Off Location <span class="req">*</span></div>
-            <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." />
+            <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." / autocomplete="off">
           
           <div class="help" id="br_maps_help" style="margin-top:-6px;"></div>
 </div>
@@ -1056,14 +1056,61 @@
       try{
         const mh = document.getElementById("br_maps_help");
         if (mh) mh.textContent = "";
+
         const pickupInput = el("br_pickup");
         const dropoffInput = el("br_dropoff");
         if(!pickupInput || !dropoffInput) return;
 
-        const opts = {
-          fields: ["place_id", "formatted_address", "geometry", "name"],
-          componentRestrictions: { country: "ca" }
-        };
+        // Match index.html behavior (Places Autocomplete with place_id + formatted_address)
+        const opts = { fields: ["place_id", "formatted_address", "geometry", "name"] };
+
+        brPickupAC = new google.maps.places.Autocomplete(pickupInput, opts);
+        brDropoffAC = new google.maps.places.Autocomplete(dropoffInput, opts);
+
+        brPickupAC.addListener("place_changed", () => {
+          brPickupPlace = brPickupAC.getPlace();
+          // normalize to formatted address when available
+          if (brPickupPlace?.formatted_address) pickupInput.value = brPickupPlace.formatted_address;
+          lastDistanceKey = "";
+          brDistanceKm = null;
+          brDistanceText = "";
+          refreshSummary();
+          updatePricingIfReady();
+        });
+
+        brDropoffAC.addListener("place_changed", () => {
+          brDropoffPlace = brDropoffAC.getPlace();
+          if (brDropoffPlace?.formatted_address) dropoffInput.value = brDropoffPlace.formatted_address;
+          lastDistanceKey = "";
+          brDistanceKm = null;
+          brDistanceText = "";
+          refreshSummary();
+          updatePricingIfReady();
+        });
+
+        // If user types manually, clear saved Places objects
+        pickupInput.addEventListener("input", () => {
+          brPickupPlace = null;
+          lastDistanceKey = "";
+          brDistanceKm = null;
+          brDistanceText = "";
+          refreshSummary();
+        });
+
+        dropoffInput.addEventListener("input", () => {
+          brDropoffPlace = null;
+          lastDistanceKey = "";
+          brDistanceKm = null;
+          brDistanceText = "";
+          refreshSummary();
+        });
+
+      }catch(e){
+        console.warn("initBookRideMaps failed:", e);
+        const mh = document.getElementById("br_maps_help");
+        if (mh) mh.textContent = "Google autocomplete failed to initialize. Confirm Places API is enabled and your key allows this domain.";
+      }
+    };
 
         brPickupAC = new google.maps.places.Autocomplete(pickupInput, opts);
         brDropoffAC = new google.maps.places.Autocomplete(dropoffInput, opts);
@@ -1569,8 +1616,7 @@
   }
 
   (function loadGoogleMapsPlaces(){
-    // Autocomplete will NOT work reliably when opening the file directly (file://)
-    // because Google API key HTTP referrer restrictions won’t match.
+    // If opened as file://, Google Places Autocomplete usually won't work with referrer-restricted keys.
     if (location.protocol === "file:"){
       setMapsHelp("Google address autocomplete won’t work when opened as a file (file://). Open this page via a local server or your hosted website.");
       return;
@@ -1581,9 +1627,9 @@
       return;
     }
 
-    // already loaded?
-    if(window.google && google.maps && google.maps.places){
-      if(window.initBookRideMaps) window.initBookRideMaps();
+    // Already loaded?
+    if (window.google && google.maps && google.maps.places){
+      if (window.initBookRideMaps) window.initBookRideMaps();
       return;
     }
 
@@ -1595,7 +1641,7 @@
     s.async = true;
     s.defer = true;
     s.onerror = () => {
-      setMapsHelp("Google Maps failed to load. Check your API key restrictions (add your domain + localhost) and ensure Places API is enabled.");
+      setMapsHelp("Google Maps failed to load. Check your API key restrictions (make sure your domain is allowed) and ensure Places API is enabled.");
     };
     document.head.appendChild(s);
   })();
