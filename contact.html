@@ -676,6 +676,17 @@
   .book-grid{grid-template-columns:1fr}
 }
 
+
+@media (max-width: 560px){
+  /* Booking form: stack 2-column rows on small screens to avoid clipped inputs */
+  .two{grid-template-columns:1fr !important}
+  .two > *{min-width:0}
+  .input, select, textarea{min-width:0}
+  .book-ride-body{padding:14px}
+  .panel{padding:12px}
+}
+
+
 /* Success / error toast */
 .toast{
   position: fixed;
