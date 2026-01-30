@@ -1779,7 +1779,6 @@ function showToast(title, message){
   t.querySelector(".x").addEventListener("click", ()=> t.remove());
   document.body.appendChild(t);
 
-  setTimeout(()=>{ if(t && t.parentNode) t.remove(); }, 8000);
 }
 
 (function handleStripeReturn(){
