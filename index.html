@@ -945,7 +945,6 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
-            <option value="8">8</option>
           </select>
         </div>
       </div><div id="quoteMsg" class="note" style="color:#ff6b6b; margin-top:10px; display:none"></div>
@@ -1018,7 +1017,7 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
               <div>
                 <div class="alt-kicker">Comfort</div>
                 <h3>Fleet options for every trip</h3>
-                <p>Sedan and SUV options for every trip — up to 14 passengers for larger groups.</p>
+<p>Sedan and SUV options for every trip — up to 7 passengers.</p>
               </div>
               <div class="alt-icon" aria-hidden="true">🚘</div>
             </div>
@@ -1174,7 +1173,7 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
   function enforcePassengerRules(){
     const p = parseInt(els.passengers.value || "1", 10);
 
-    // 1–3: Sedan or SUV, 4–8: SUV only
+    // 1–3: Sedan or SUV, 4–7: SUV only
     const sedanOption = els.vehicle.querySelector('option[value="sedan"]');
     if (!sedanOption) return;
 
