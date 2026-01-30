@@ -566,6 +566,27 @@
     }
 
     /* Book a Ride (Contact page) */
+
+/* Label as gold button (visual only) */
+.label-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:12px;
+  background:linear-gradient(180deg, var(--gold) 0%, var(--gold2) 100%);
+  color:#0b0b0f;
+  border:0;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.35px;
+  text-transform:uppercase;
+  width:fit-content;
+  margin-bottom:4px;
+}
+.label-pill .req{color:#0b0b0f; opacity:.85;}
+
 .book-ride{
   border:1px solid rgba(255,255,255,.10);
   border-radius:var(--radius2);
@@ -637,8 +658,20 @@
   display:grid;
   grid-template-columns: 1fr .95fr;
   gap:14px;
-  align-items:start;
+  align-items:stretch;
 }
+
+/* Ensure summary panel matches Ride details panel height (desktop two-column layout) */
+.book-grid > div:first-child{
+  display:flex;
+}
+.book-grid > div:first-child > .panel{
+  flex:1 1 auto;
+}
+#br_summary_panel{
+  height:100%;
+}
+
 .panel{
   border:1px solid rgba(255,255,255,.10);
   background:rgba(255,255,255,.03);
@@ -667,6 +700,15 @@
   font-family:"Playfair Display", serif;
   font-size:22px;
   letter-spacing:.2px;
+}
+
+/* Make Summary panel match Ride Details panel height on desktop */
+#br_summary_panel{
+  display:flex;
+  flex-direction:column;
+}
+#br_summary_panel .summary{
+  flex:1 1 auto;
 }
 
 @media (max-width: 980px){
@@ -921,22 +963,22 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
 
           <div class="two">
             <div class="field">
-              <div class="label">Pickup Date <span class="muted">(optional)</span></div>
+              <div class="label label-pill">Pickup Date</div>
               <input class="input" id="br_date" type="date" />
             </div>
             <div class="field">
-              <div class="label">Pickup Time <span class="muted">(optional)</span></div>
+              <div class="label label-pill">Pickup Time</div>
               <input class="input" id="br_time" type="time" />
             </div>
           </div>
 
           <div class="field">
-            <div class="label">Pickup Location <span class="req">*</span></div>
+            <div class="label label-pill">Pickup Location <span class="req">*</span></div>
             <input class="input" id="br_pickup" type="text" placeholder="e.g., Toronto Pearson (YYZ), 6301 Silver Dart Dr" />
           </div>
 
           <div class="field">
-            <div class="label">Drop-Off Location <span class="req">*</span></div>
+            <div class="label label-pill">Drop-Off Location <span class="req">*</span></div>
             <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." />
           
           <div class="help" id="br_maps_help" style="margin-top:-6px;"></div>
@@ -944,14 +986,14 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
 
           <div class="two">
             <div class="field">
-              <div class="label">Transfer Type</div>
+              <div class="label label-pill">Transfer Type</div>
               <select class="input" id="br_transfer">
                 <option value="one_way" selected>One Way</option>
                 <option value="round_trip">Round Trip</option>
               </select>
             </div>
             <div class="field">
-              <div class="label">Extra Waiting Hours <span class="muted">(round trip only)</span></div>
+              <div class="label label-pill">Extra Waiting Hours</div>
               <select class="input" id="br_wait">
                 <option value="0" selected>No Waiting</option>
                 <option value="1">1 hour</option>
@@ -1024,7 +1066,7 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
         </div>
       </div>
 
-      <div class="panel">
+      <div class="panel" id="br_summary_panel">
         <h4>Summary</h4>
         <div class="summary">
           <div class="rowline"><span>Pickup</span><div id="br_sum_pickup">—</div></div>
@@ -1197,6 +1239,8 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           brDistanceKm = null;
           brDistanceText = "";
           refreshSummary();
+
+  syncSummaryHeight();
           updatePricingIfReady();
         });
 
@@ -1347,6 +1391,36 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
     if(anchor) anchor.scrollIntoView({behavior:"smooth", block:"start"});
   }
 }
+
+    function syncSummaryHeight(){
+      const summaryPanel = document.getElementById("br_summary_panel");
+      if(!summaryPanel) return;
+
+      // When stacked (mobile), don't force heights
+      if(window.matchMedia && window.matchMedia("(max-width: 980px)").matches){
+        summaryPanel.style.minHeight = "";
+        return;
+      }
+
+      const s1 = document.getElementById("br-step-1");
+      const s2 = document.getElementById("br-step-2");
+      const s3 = document.getElementById("br-step-3");
+      const activePanel = (s1 && !s1.classList.contains("hidden")) ? s1 :
+                          (s2 && !s2.classList.contains("hidden")) ? s2 :
+                          (s3 && !s3.classList.contains("hidden")) ? s3 : null;
+
+      if(!activePanel){
+        summaryPanel.style.minHeight = "";
+        return;
+      }
+
+      // Match heights (account for borders)
+      const h = Math.ceil(activePanel.getBoundingClientRect().height);
+      if(h > 0){
+        summaryPanel.style.minHeight = h + "px";
+      }
+    }
+
 
 
     function requiredOk(){
@@ -1555,8 +1629,8 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
 
         const w = waitHours();
         if(w > 0){
-          total += (w * 30);
-          details += ` + Waiting: $30 × ${w} hour(s)`;
+          total += (w * 80);
+          details += ` + Waiting: $80 × ${w} hour(s)`;
         }
       }
 
@@ -1678,6 +1752,9 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
     enforceWaitingRules();
     refreshSummary();
 setStep(1, { scroll:false });
+    syncSummaryHeight();
+    window.addEventListener("resize", syncSummaryHeight);
+
 
  /* ADD THIS WHOLE BLOCK HERE */
 function showToast(title, message){
