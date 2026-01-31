@@ -1232,19 +1232,41 @@ function computePrice(vehicle, km, yyzTrip){
 
 
   function enforcePassengerRules(){
-    const p = parseInt(els.passengers.value || "1", 10);
+  const vehicle = els.vehicle.value || "sedan";
+  let p = parseInt(els.passengers.value || "1", 10);
+  if(!Number.isFinite(p) || p < 1) p = 1;
 
-    // 1–3: Sedan or SUV, 4–7: SUV only
-    const sedanOption = els.vehicle.querySelector('option[value="sedan"]');
-    if (!sedanOption) return;
+  const sedanOption = els.vehicle.querySelector('option[value="sedan"]');
 
-    if (p >= 4){
-      sedanOption.disabled = true;
-      els.vehicle.value = "suv";
-    } else {
-      sedanOption.disabled = false;
-    }
+  // If passengers is 4+ => force SUV
+  if (p >= 4){
+    if (sedanOption) sedanOption.disabled = true;
+    els.vehicle.value = "suv";
+  } else {
+    if (sedanOption) sedanOption.disabled = false;
   }
+
+  // Now update the passengers dropdown options:
+  // - Sedan => 1–3 only
+  // - SUV   => 1–7
+  const activeVehicle = els.vehicle.value || vehicle;
+  const max = (activeVehicle === "sedan") ? 3 : 7;
+
+  // Rebuild options
+  const current = parseInt(els.passengers.value || "1", 10);
+  els.passengers.innerHTML = "";
+  for(let i = 1; i <= max; i++){
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = String(i);
+    els.passengers.appendChild(opt);
+  }
+
+  // Clamp selected value to max
+  const nextVal = Math.min(Number.isFinite(current) ? current : 1, max);
+  els.passengers.value = String(nextVal);
+}
+
 
   function updateDisplays(){
     if (typeof lastKm === "number" && isFinite(lastKm)){
