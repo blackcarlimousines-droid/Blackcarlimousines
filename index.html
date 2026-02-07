@@ -1494,6 +1494,22 @@ els.dropoff.addEventListener("keydown", (e) => { if (e.key === "Enter"){ e.preve
       });
     })();
   </script>
+<script>
+(function keepSupabaseAlive() {
+  fetch("https://jyiscxsccnitwifxzmjk.supabase.co/functions/v1/create-checkout-session", {
+    method: "GET",
+    headers: {
+      "apikey": "sb_publishable_ybOYJSLZnueQdjdxG3Ue8g_iASkLFqA"
+    }
+  })
+  .then(() => {
+    console.log("Supabase keep-alive ping sent");
+  })
+  .catch(() => {
+    console.warn("Supabase keep-alive ping failed");
+  });
+})();
+</script>
 
 </body>
 </html>
