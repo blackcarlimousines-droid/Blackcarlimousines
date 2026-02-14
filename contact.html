@@ -1618,19 +1618,28 @@ if(v === "suv") return "SUV (up to 7 passengers)";
   let total = 0;
   let breakdown = "";
 
-  /* ================= YYZ PRICING (KEEP OLD) ================= */
+  /* ================= YYZ PRICING (UPDATED) ================= */
+  // Sedan:
+  //   <25 km     => $50
+  //   25–60 km   => $2 / km
+  //   60+ km     => First 60 km = $120, extra km = $1.75 / km
+  //
+  // SUV:
+  //   <30 km     => $75
+  //   30–60 km   => $2.5 / km
+  //   60+ km     => First 60 km = $150, extra km = $2 / km
   if(yyzTrip){
     if(vehicle === "sedan"){
       if(km < 25){
         total = 50;
         breakdown = "YYZ Sedan flat rate (under 25km): $50";
-      } else if(km <= 100){
+      } else if(km <= 60){
         total = km * 2;
         breakdown = `YYZ Sedan: $2.00/km × ${km.toFixed(1)}km`;
       } else {
-        const over = km - 100;
-        total = 200 + (over * 1.75);
-        breakdown = `YYZ Sedan: $200 + $1.75/km × ${over.toFixed(1)}km`;
+        const over = km - 60;
+        total = 120 + (over * 1.75);
+        breakdown = `YYZ Sedan: $120 + $1.75/km × ${over.toFixed(1)}km`;
       }
       return { total, breakdown };
     }
@@ -1639,13 +1648,13 @@ if(v === "suv") return "SUV (up to 7 passengers)";
       if(km < 30){
         total = 75;
         breakdown = "YYZ SUV flat rate (under 30km): $75";
-      } else if(km <= 100){
+      } else if(km <= 60){
         total = km * 2.5;
         breakdown = `YYZ SUV: $2.50/km × ${km.toFixed(1)}km`;
       } else {
-        const over = km - 100;
-        total = 250 + (over * 2);
-        breakdown = `YYZ SUV: $250 + $2.00/km × ${over.toFixed(1)}km`;
+        const over = km - 60;
+        total = 150 + (over * 2);
+        breakdown = `YYZ SUV: $150 + $2.00/km × ${over.toFixed(1)}km`;
       }
       return { total, breakdown };
     }
