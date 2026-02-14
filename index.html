@@ -1237,25 +1237,21 @@ function computePrice(vehicle, km, yyzTrip){
   // Sedan:
   //   <25 km     => $50
   //   25–60 km   => $2 / km
-  //   60+ km     => First 60 km = $120, extra km = $1.75 / km
+  //   60+ km     => First 60 km = $120, extra km = $0.77 / km
   // SUV:
-  //   <30 km     => $75
-  //   30–60 km   => $2.5 / km
-  //   60+ km     => First 60 km = $150, extra km = $2 / km
+  //   Same as Sedan + $30
   if (yyzTrip){
-    if (vehicle === "sedan"){
-      if (km < 25) return 50;
-      if (km <= 60) return km * 2;
-      return 120 + ((km - 60) * 1.75);
-    }
+    let sedanBase = 0;
 
-    // suv
-    if (km < 30) return 75;
-    if (km <= 60) return km * 2.5;
-    return 150 + ((km - 60) * 2);
+    if (km < 25) sedanBase = 50;
+    else if (km <= 60) sedanBase = km * 2;
+    else sedanBase = 120 + ((km - 60) * 0.77);
+
+    if (vehicle === "suv") return sedanBase + 30;
+    return sedanBase;
   }
 
-  // ========= Non-YYZ pricing (NEW pricing rules) =========
+  // ========= Non-YYZ pricing (UNCHANGED) =========
   if (vehicle === "sedan"){
     // 0–18km = $50
     if (km <= 18) return 50;

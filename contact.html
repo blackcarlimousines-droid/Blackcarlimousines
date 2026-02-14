@@ -1622,45 +1622,37 @@ if(v === "suv") return "SUV (up to 7 passengers)";
   // Sedan:
   //   <25 km     => $50
   //   25–60 km   => $2 / km
-  //   60+ km     => First 60 km = $120, extra km = $1.75 / km
-  //
+  //   60+ km     => First 60 km = $120, extra km = $0.77 / km
   // SUV:
-  //   <30 km     => $75
-  //   30–60 km   => $2.5 / km
-  //   60+ km     => First 60 km = $150, extra km = $2 / km
+  //   Same as Sedan + $30
   if(yyzTrip){
-    if(vehicle === "sedan"){
-      if(km < 25){
-        total = 50;
-        breakdown = "YYZ Sedan flat rate (under 25km): $50";
-      } else if(km <= 60){
-        total = km * 2;
-        breakdown = `YYZ Sedan: $2.00/km × ${km.toFixed(1)}km`;
-      } else {
-        const over = km - 60;
-        total = 120 + (over * 1.75);
-        breakdown = `YYZ Sedan: $120 + $1.75/km × ${over.toFixed(1)}km`;
-      }
-      return { total, breakdown };
+    let sedanBase = 0;
+    let sedanBreakdown = "";
+
+    if(km < 25){
+      sedanBase = 50;
+      sedanBreakdown = "YYZ Sedan flat rate (under 25km): $50";
+    } else if(km <= 60){
+      sedanBase = km * 2;
+      sedanBreakdown = `YYZ Sedan: $2.00/km × ${km.toFixed(1)}km`;
+    } else {
+      const over = km - 60;
+      sedanBase = 120 + (over * 0.77);
+      sedanBreakdown = `YYZ Sedan: $120 + $0.77/km × ${over.toFixed(1)}km`;
     }
 
     if(vehicle === "suv"){
-      if(km < 30){
-        total = 75;
-        breakdown = "YYZ SUV flat rate (under 30km): $75";
-      } else if(km <= 60){
-        total = km * 2.5;
-        breakdown = `YYZ SUV: $2.50/km × ${km.toFixed(1)}km`;
-      } else {
-        const over = km - 60;
-        total = 150 + (over * 2);
-        breakdown = `YYZ SUV: $150 + $2.00/km × ${over.toFixed(1)}km`;
-      }
+      total = sedanBase + 30;
+      breakdown = sedanBreakdown + " + $30 (SUV)";
       return { total, breakdown };
     }
+
+    total = sedanBase;
+    breakdown = sedanBreakdown;
+    return { total, breakdown };
   }
 
-  /* ================= NON-YYZ PRICING (NEW RULES) ================= */
+  /* ================= NON-YYZ PRICING (UNCHANGED) ================= */
   if(vehicle === "sedan"){
     if(km <= 18){
       total = 50;
