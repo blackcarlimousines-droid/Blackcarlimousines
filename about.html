@@ -610,35 +610,8 @@
 
 
     
-
-/* === MOBILE FOOTER BRAND FIX === */
-@media (max-width: 768px){
-  .footer-grid{
-    grid-template-columns: 1fr !important;
-    text-align: center;
-  }
-  footer .brand{
-    justify-content: center !important;
-    gap: 10px !important;
-    margin-bottom: 14px;
-  }
-  footer .brand .logo{
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 12px !important;
-  }
-  footer .brand strong{
-    font-size: 16px !important;
-  }
-  footer .brand span{
-    font-size: 11px !important;
-  }
-  /* In case footer brand is inline-flex without .brand class */
-  footer .footer-grid > div:first-child > div:first-child{
-    justify-content:center !important;
-  }
-}
-
+/* HIDE OLD LOGO DIV */
+.logo{display:none !important;}
 </style>
 </head>
 <body>
@@ -646,7 +619,7 @@
     <div class="container">
       <div class="topbar-inner">
 	<a class="brand" href="index.html" aria-label="Limousine Car Services">
-          <div class="logo" aria-hidden="true"></div>
+          <img src="Logo.png" alt="Limousine Car Services" style="height:44px;width:auto;display:block;">
           <div>
 	<strong>Limousine Car Services</strong>
 	<span>Luxury Chauffeur Service in the GTA</span>
@@ -685,7 +658,7 @@
   <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
     <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
       <div style="display:flex; align-items:center; gap:10px;">
-        <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
+        <img src="Logo.png" alt="Limousine Car Services" style="height:36px;width:auto;display:block;">
         <div>
           <strong style="font-family:'Playfair Display',serif; font-size:16px; display:block; line-height:1;">Limousine Car Services</strong>
           <div class="small muted" style="margin-top:2px;">Luxury Chauffeur Service in the GTA</div>
@@ -797,7 +770,7 @@
       <div class="footer-grid">
         <div>
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
+            <img src="Logo.png" alt="Limousine Car Services" style="height:36px;width:auto;display:block;">
             <div>
 	<strong style="font-family:'Playfair Display',serif; font-size:16px;">Limousine Car Services</strong>
               <div class="small muted">GTA Chauffeur & Airport Transfers</div>

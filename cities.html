@@ -792,7 +792,10 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
       .mobile-overlay,.mobile-drawer{display:none !important}
     }
 
-  </style>
+  
+/* HIDE OLD LOGO DIV */
+.logo{display:none !important;}
+</style>
 
 <style>
   /* Cities page (no photos yet) */
@@ -815,36 +818,6 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
   @media (max-width: 980px){
     .city-media{height:170px;}
   }
-
-
-/* === MOBILE FOOTER BRAND FIX === */
-@media (max-width: 768px){
-  .footer-grid{
-    grid-template-columns: 1fr !important;
-    text-align: center;
-  }
-  footer .brand{
-    justify-content: center !important;
-    gap: 10px !important;
-    margin-bottom: 14px;
-  }
-  footer .brand .logo{
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 12px !important;
-  }
-  footer .brand strong{
-    font-size: 16px !important;
-  }
-  footer .brand span{
-    font-size: 11px !important;
-  }
-  /* In case footer brand is inline-flex without .brand class */
-  footer .footer-grid > div:first-child > div:first-child{
-    justify-content:center !important;
-  }
-}
-
 </style>
 
 </head>
@@ -853,7 +826,7 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
     <div class="container">
       <div class="topbar-inner">
 	<a class="brand" href="index.html" aria-label="Limousine Car Services">
-          <div class="logo" aria-hidden="true"></div>
+          <img src="Logo.png" alt="Limousine Car Services" style="height:44px;width:auto;display:block;">
           <div>
 	<strong>Limousine Car Services</strong>
 	<span>Luxury Chauffeur Service in the GTA</span>
@@ -892,7 +865,7 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
   <aside id="mobileNav" class="mobile-drawer" aria-label="Mobile navigation">
     <div class="mobile-close">
       <div style="display:flex; align-items:center; gap:10px;">
-        <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
+        <img src="Logo.png" alt="Limousine Car Services" style="height:36px;width:auto;display:block;">
         <div>
           <div style="font-family:'Playfair Display',serif; font-weight:700; letter-spacing:.2px;">Limousine Car Services</div>
           <div class="muted" style="font-size:12px;">Luxury Chauffeur Service in the GTA</div>
@@ -1052,7 +1025,7 @@ url("https://images.unsplash.com/photo-1767749995462-9fe0890d5960?auto=format&fi
       <div class="footer-grid">
         <div>
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
+            <img src="Logo.png" alt="Limousine Car Services" style="height:36px;width:auto;display:block;">
             <div>
 	<strong style="font-family:'Playfair Display',serif; font-size:16px;">Limousine Car Services</strong>
               <div class="small muted">GTA Chauffeur & Airport Transfers</div>
