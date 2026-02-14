@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fleet | Black Car Limousines</title>
+  <title>Fleet | Limousine Car Services</title>
   <meta name="description" content="Premium limousine and chauffeur service in the GTA. Airport transfers, corporate travel, weddings, events. Professional drivers. Luxury fleet. Book in minutes." />
   <meta name="theme-color" content="#0b0b0f" />
 
@@ -103,20 +103,32 @@
       display:flex; align-items:center; gap:12px;
       min-width:220px;
     }
-    .logo{
+        .logo{
       width:40px;height:40px;border-radius:14px;
       background:
-        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.20), transparent 70%),
+        radial-gradient(18px 18px at 28% 26%, rgba(255,255,255,.22), transparent 65%),
         linear-gradient(180deg, rgba(214,177,94,.95), rgba(182,138,46,.95));
-      box-shadow:0 12px 26px rgba(214,177,94,.18);
+      box-shadow:0 14px 34px rgba(214,177,94,.22);
       position:relative;
+      display:grid;
+      place-items:center;
+    }
+    .logo:before{
+      content:"L";
+      font-family:"Playfair Display", serif;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:.2px;
+      color:rgba(11,11,15,.92);
+      text-shadow:0 1px 0 rgba(255,255,255,.22);
+      transform:translateY(-.5px);
     }
     .logo:after{
       content:"";
-      position:absolute; inset:10px 12px;
-      border:2px solid rgba(11,11,15,.9);
-      border-radius:10px;
-      transform:skewX(-10deg);
+      position:absolute; inset:7px;
+      border:1px solid rgba(11,11,15,.42);
+      border-radius:12px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
     }
     .brand strong{
       font-family:"Playfair Display", serif;
@@ -752,10 +764,10 @@ nav{gap:14px !important}
 <header class="topbar">
     <div class="container">
       <div class="topbar-inner">
-	<a class="brand" href="index.html" aria-label="Black Car Limousines">
+	<a class="brand" href="index.html" aria-label="Limousine Car Services">
           <div class="logo" aria-hidden="true"></div>
           <div>
-	<strong>Black Car Limousines</strong>
+	<strong>Limousine Car Services</strong>
 	<span>Luxury Chauffeur Service in the GTA</span>
           </div>
         </a>
@@ -794,7 +806,7 @@ nav{gap:14px !important}
       <div style="display:flex; align-items:center; gap:10px;">
         <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
         <div>
-          <div style="font-family:'Playfair Display',serif; font-weight:700; letter-spacing:.2px;">Black Car Limousines</div>
+          <div style="font-family:'Playfair Display',serif; font-weight:700; letter-spacing:.2px;">Limousine Car Services</div>
           <div class="muted" style="font-size:12px;">Luxury Chauffeur Service in the GTA</div>
         </div>
       </div>
@@ -938,7 +950,7 @@ nav{gap:14px !important}
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
             <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></div>
             <div>
-	<strong style="font-family:'Playfair Display',serif; font-size:16px;">Black Car Limousines</strong>
+	<strong style="font-family:'Playfair Display',serif; font-size:16px;">Limousine Car Services</strong>
               <div class="small muted">GTA Chauffeur & Airport Transfers</div>
             </div>
           </div>
@@ -992,7 +1004,7 @@ nav{gap:14px !important}
       </div>
 
       <div class="small muted" style="margin-top:18px; text-align:center;">
-        © <span id="year"></span> Elite Limo. All rights reserved.
+        © <span id="year"></span> Limousine Car Services. All rights reserved.
       </div>
     </div>
   </footer>
