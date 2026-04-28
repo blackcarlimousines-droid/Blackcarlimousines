@@ -1899,6 +1899,19 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
 
       await updatePricingIfReady();
 
+      const payNowBtn = el("br_pay");
+      const payLaterBtn = el("br_pay_later");
+      const originalPayNowText = payNowBtn ? payNowBtn.textContent : "";
+
+      if(payNowBtn){
+        payNowBtn.disabled = true;
+        payNowBtn.textContent = "Opening Stripe...";
+      }
+
+      if(payLaterBtn){
+        payLaterBtn.disabled = true;
+      }
+
       const payload = buildBookingPayload();
 
       try{
@@ -1913,6 +1926,16 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
         if(!res.ok){
           const msg = data?.error || "Could not start Stripe checkout. Please check your booking details and try again.";
           alert(msg);
+
+          if(payNowBtn){
+            payNowBtn.disabled = false;
+            payNowBtn.textContent = originalPayNowText || "Pay Now (Stripe)";
+          }
+
+          if(payLaterBtn){
+            payLaterBtn.disabled = false;
+          }
+
           return;
         }
 
@@ -1924,6 +1947,15 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
       }catch(err){
         console.warn(err);
         alert("Could not start Stripe checkout. Please try again in a moment.");
+
+        if(payNowBtn){
+          payNowBtn.disabled = false;
+          payNowBtn.textContent = originalPayNowText || "Pay Now (Stripe)";
+        }
+
+        if(payLaterBtn){
+          payLaterBtn.disabled = false;
+        }
       }
     }
 
@@ -1959,19 +1991,28 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           return;
         }
 
+        setBookingActionButtonsDisabled(true);
+
         showToast(
           "✅ Booking request received — we will confirm your ride shortly",
-          "Thank you! Your Pay Later booking request has been sent to our team. We will review the ride details and contact you shortly."
+          "Thank you! Your Pay Later booking request has been sent to our team. We will review the ride details and contact you shortly.",
+          resetBookingForm
         );
+
       }catch(err){
         console.warn(err);
         alert("Could not submit Pay Later booking. Please try again in a moment.");
+
       }finally{
         if(button){
-          button.disabled = false;
           button.textContent = originalText || "Pay Later";
+
+          if(!document.querySelector(".toast")){
+            button.disabled = false;
+          }
         }
       }
+
     }
 
     [
@@ -2037,7 +2078,64 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
       await submitPayLaterBooking();
     });
 
-    function showToast(title, message){
+    function setBookingActionButtonsDisabled(disabled){
+      const payNowBtn = el("br_pay");
+      const payLaterBtn = el("br_pay_later");
+
+      if(payNowBtn) payNowBtn.disabled = disabled;
+      if(payLaterBtn) payLaterBtn.disabled = disabled;
+    }
+
+    function resetBookingForm(){
+      [
+        "br_date",
+        "br_time",
+        "br_pickup",
+        "br_dropoff",
+        "br_passengers",
+        "br_bags",
+        "br_flight",
+        "br_name",
+        "br_phone",
+        "br_email",
+      ].forEach((id) => {
+        const node = el(id);
+        if(node) node.value = "";
+      });
+
+      const transfer = el("br_transfer");
+      if(transfer) transfer.value = "one_way";
+
+      const wait = el("br_wait");
+      if(wait) wait.value = "0";
+
+      const vehicle = el("br_vehicle");
+      if(vehicle) vehicle.value = "";
+
+      brPickupPlace = null;
+      brDropoffPlace = null;
+      lastDistanceKey = "";
+      brDistanceKm = null;
+      brDistanceText = "";
+      brPriceTotal = null;
+
+      const priceEl = el("br_price_display");
+      const subEl = el("br_price_sub");
+      const noteEl = el("br_price_note");
+
+      if(priceEl) priceEl.textContent = "—";
+      if(subEl) subEl.textContent = "Enter your name and phone to calculate";
+      if(noteEl) noteEl.textContent = "Enter your name and phone number to calculate price.";
+
+      setBookingActionButtonsDisabled(false);
+      setDateMin();
+      enforceWaitingRules();
+      enforceBagRules();
+      refreshSummary();
+      setStep(1, { scroll: true });
+    }
+
+    function showToast(title, message, onClose){
       document.querySelectorAll(".toast").forEach((t) => t.remove());
 
       const t = document.createElement("div");
@@ -2052,7 +2150,13 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
         </div>
       `;
 
-      t.querySelector(".x").addEventListener("click", () => t.remove());
+      t.querySelector(".x").addEventListener("click", () => {
+        t.remove();
+        if(typeof onClose === "function"){
+          onClose();
+        }
+      });
+
       document.body.appendChild(t);
     }
 
