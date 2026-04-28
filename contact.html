@@ -979,19 +979,19 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
       <div class="step active" data-step="1">
         <div class="num">1</div>
         <div class="label2">Enter Ride Details</div>
-        <div class="hint">Pickup, drop-off, and transfer type.</div>
+        <div class="hint">Pickup, drop-off, date, time, and transfer type.</div>
       </div>
       <div class="line" aria-hidden="true"></div>
       <div class="step" data-step="2">
         <div class="num">2</div>
         <div class="label2">Choose a Vehicle</div>
-        <div class="hint">Select the vehicle that fits your group.</div>
+        <div class="hint">Select passengers, bags, and vehicle type.</div>
       </div>
       <div class="line" aria-hidden="true"></div>
       <div class="step" data-step="3">
         <div class="num">3</div>
         <div class="label2">Place Order</div>
-        <div class="hint">Review price and pay now via Stripe.</div>
+        <div class="hint">Enter contact details and pay now via Stripe.</div>
       </div>
     </div>
   </div>
@@ -1004,26 +1004,25 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
 
           <div class="two">
             <div class="field">
-              <div class="label label-pill">Pickup Date</div>
-              <input class="input" id="br_date" type="date" />
+              <div class="label label-pill">Pickup Date <span class="req">*</span></div>
+              <input class="input" id="br_date" type="date" required />
             </div>
             <div class="field">
-              <div class="label label-pill">Pickup Time</div>
-              <input class="input" id="br_time" type="time" />
+              <div class="label label-pill">Pickup Time <span class="req">*</span></div>
+              <input class="input" id="br_time" type="time" required />
             </div>
           </div>
 
           <div class="field">
             <div class="label label-pill">Pickup Location <span class="req">*</span></div>
-            <input class="input" id="br_pickup" type="text" placeholder="e.g., Toronto Pearson (YYZ), 6301 Silver Dart Dr" />
+            <input class="input" id="br_pickup" type="text" placeholder="e.g., Toronto Pearson (YYZ), 6301 Silver Dart Dr" required />
           </div>
 
           <div class="field">
             <div class="label label-pill">Drop-Off Location <span class="req">*</span></div>
-            <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." />
-          
-          <div class="help" id="br_maps_help" style="margin-top:-6px;"></div>
-</div>
+            <input class="input" id="br_dropoff" type="text" placeholder="e.g., Downtown Toronto, hotel address, etc." required />
+            <div class="help" id="br_maps_help" style="margin-top:-6px;"></div>
+          </div>
 
           <div class="two">
             <div class="field">
@@ -1047,7 +1046,7 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
             </div>
           </div>
 
-          <div class="help">Fields marked with <span class="req">*</span> are required.</div>
+          <div class="help">Fields marked with <span class="req">*</span> are required. Past dates and times are not accepted.</div>
 
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
             <button class="btn primary" type="button" id="br_next_1">Continue</button>
@@ -1059,20 +1058,31 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           <h4>Choose a vehicle <span class="req">*</span></h4>
 
           <div class="field">
-            <div class="label">Vehicle</div>
-            <select class="input" id="br_vehicle">
+            <div class="label">Vehicle <span class="req">*</span></div>
+            <select class="input" id="br_vehicle" required>
               <option value="" selected disabled>Select a vehicle</option>
               <option value="sedan">Sedan (up to 3 passengers)</option>
               <option value="suv">SUV (up to 7 passengers)</option>
             </select>
           </div>
 
-          <div class="field">
-            <div class="label">Passengers <span class="muted">(optional)</span></div>
-            <input class="input" id="br_passengers" type="number" min="1" max="7">
+          <div class="two">
+            <div class="field">
+              <div class="label">Passengers <span class="muted">(optional)</span></div>
+              <input class="input" id="br_passengers" type="number" min="1" max="7" placeholder="e.g., 2" />
+            </div>
+            <div class="field">
+              <div class="label">Bags <span class="muted">(optional)</span></div>
+              <input class="input" id="br_bags" type="number" min="0" max="20" placeholder="e.g., 2" />
+            </div>
           </div>
 
-          <div class="help">We’ll match you with the best option if you’re not sure.</div>
+          <div class="field">
+            <div class="label">Flight Number <span class="muted">(optional)</span></div>
+            <input class="input" id="br_flight" type="text" placeholder="e.g., AC123, WS456, EK241" />
+          </div>
+
+          <div class="help">If your bags exceed the vehicle limit, please upgrade the vehicle type or contact us before booking.</div>
 
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
             <button class="btn" type="button" id="br_back_2">Back</button>
@@ -1085,12 +1095,12 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
 
           <div class="two">
             <div class="field">
-              <div class="label">Customer Name <span class="muted">(optional)</span></div>
-              <input class="input" id="br_name" type="text" placeholder="Your full name" />
+              <div class="label">Customer Name <span class="req">*</span></div>
+              <input class="input" id="br_name" type="text" placeholder="Your full name" required />
             </div>
             <div class="field">
-              <div class="label">Phone <span class="muted">(optional)</span></div>
-              <input class="input" id="br_phone" type="tel" placeholder="e.g., (647) 000-0000" />
+              <div class="label">Phone <span class="req">*</span></div>
+              <input class="input" id="br_phone" type="tel" placeholder="e.g., (647) 000-0000" required />
             </div>
           </div>
 
@@ -1099,10 +1109,18 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
             <input class="input" id="br_email" type="email" placeholder="you@email.com" />
           </div>
 
-          <div class="note" id="br_price_note" style="margin-top:10px; border:1px solid rgba(214,177,94,.22); background:rgba(214,177,94,.10); padding:10px 12px; border-radius:14px;">Enter your name to calculate price.</div>
+          <div class="note" id="br_price_note" style="margin-top:10px; border:1px solid rgba(214,177,94,.22); background:rgba(214,177,94,.10); padding:10px 12px; border-radius:14px;">
+            Enter your name and phone number to calculate price.
+          </div>
+
+          <div class="help" style="margin-top:10px;">
+            Choose <strong>Pay Now</strong> to complete payment securely by Stripe, or choose <strong>Pay Later</strong> to submit your booking request and our team will confirm your ride shortly.
+          </div>
+
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
             <button class="btn" type="button" id="br_back_3">Back</button>
             <button class="btn primary" type="button" id="br_pay">Pay Now (Stripe)</button>
+            <button class="btn" type="button" id="br_pay_later">Pay Later</button>
           </div>
         </div>
       </div>
@@ -1118,6 +1136,8 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           <div class="rowline"><span>Waiting</span><div id="br_sum_wait">No Waiting</div></div>
           <div class="rowline"><span>Vehicle</span><div id="br_sum_vehicle">—</div></div>
           <div class="rowline"><span>Passengers</span><div id="br_sum_passengers">—</div></div>
+          <div class="rowline"><span>Bags</span><div id="br_sum_bags">—</div></div>
+          <div class="rowline"><span>Flight</span><div id="br_sum_flight">—</div></div>
           <div class="rowline"><span>Customer</span><div id="br_sum_customer">—</div></div>
           <div class="rowline"><span>Contact</span><div id="br_sum_contact">—</div></div>
         </div>
@@ -1128,12 +1148,12 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
             <strong class="big" id="br_price_display">—</strong>
           </div>
           <div style="text-align:right">
-            <span id="br_price_sub">Enter your name to calculate</span>
+            <span id="br_price_sub">Enter your name and phone to calculate</span>
           </div>
         </div>
 
         <div class="help" style="margin-top:10px;">
-          Tip: If you need airport pickup, include terminal/airline in the pickup location.
+          Tip: If you need airport pickup, include the flight number when available.
         </div>
       </div>
     </div>
@@ -1229,46 +1249,99 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
     </div>
   </footer>
 
-
 <script>
-  // Book a Ride (Contact page)
   (function(){
-    // IMPORTANT:
-    // - Pricing is calculated client-side (distance-based).
-    // - Pay Now calls the Supabase Edge Function create-checkout-session which creates a Stripe Checkout Session.
-    // - After successful payment, Stripe webhook (Supabase) sends the internal order email (via Resend).
     const CREATE_CHECKOUT_ENDPOINT = "https://jyiscxsccnitwifxzmjk.supabase.co/functions/v1/create-checkout-session";
-    const CURRENCY = "cad";
+    const PAY_LATER_ENDPOINT = "https://jyiscxsccnitwifxzmjk.supabase.co/functions/v1/submit-pay-later-booking";
 
-
-    // Google Places state (Book a Ride)
     let brPickupPlace = null;
     let brDropoffPlace = null;
     let brPickupAC = null;
     let brDropoffAC = null;
-    const stepEls = Array.from(document.querySelectorAll('.stepper .step'));
+    let lastDistanceKey = "";
+    let brDistanceKm = null;
+    let brDistanceText = "";
+    let brPriceTotal = null;
+
+    const stepEls = Array.from(document.querySelectorAll(".stepper .step"));
     const stepPanels = {
-      1: document.getElementById('br-step-1'),
-      2: document.getElementById('br-step-2'),
-      3: document.getElementById('br-step-3'),
+      1: document.getElementById("br-step-1"),
+      2: document.getElementById("br-step-2"),
+      3: document.getElementById("br-step-3"),
     };
 
-    const el = (id)=>document.getElementById(id);
-    const val = (id)=> (el(id)?.value || "").trim();
-    const setText = (id, text)=>{ const n=el(id); if(n) n.textContent = text; };
+    const el = (id) => document.getElementById(id);
+    const val = (id) => (el(id)?.value || "").trim();
 
-    // Called by Google Maps script (Places library)
+    function setText(id, text){
+      const node = el(id);
+      if(node) node.textContent = text;
+    }
+
+    function todayLocalDate(){
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const dd = String(d.getDate()).padStart(2, "0");
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function setDateMin(){
+      const dateInput = el("br_date");
+      if(dateInput) dateInput.min = todayLocalDate();
+    }
+
+    function selectedPickupDateTime(){
+      const d = val("br_date");
+      const t = val("br_time");
+
+      if(!d || !t) return null;
+
+      const dt = new Date(`${d}T${t}`);
+      if(Number.isNaN(dt.getTime())) return null;
+
+      return dt;
+    }
+
+    function dateTimeOk(){
+      const d = val("br_date");
+      const t = val("br_time");
+
+      if(!d || !t){
+        alert("Please select both Pickup Date and Pickup Time.");
+        return false;
+      }
+
+      const selected = selectedPickupDateTime();
+
+      if(!selected){
+        alert("Please select a valid Pickup Date and Pickup Time.");
+        return false;
+      }
+
+      const now = new Date();
+
+      if(selected.getTime() < now.getTime()){
+        alert("Pickup date and time cannot be in the past.");
+        return false;
+      }
+
+      return true;
+    }
+
     window.initBookRideMaps = function initBookRideMaps(){
       try{
-        const mh = document.getElementById("br_maps_help");
-        if (mh) mh.textContent = "";
+        const mh = el("br_maps_help");
+        if(mh) mh.textContent = "";
+
         const pickupInput = el("br_pickup");
         const dropoffInput = el("br_dropoff");
+
         if(!pickupInput || !dropoffInput) return;
 
         const opts = {
           fields: ["place_id", "formatted_address", "geometry", "name"],
-          componentRestrictions: { country: "ca" }
+          componentRestrictions: { country: "ca" },
         };
 
         brPickupAC = new google.maps.places.Autocomplete(pickupInput, opts);
@@ -1280,8 +1353,7 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           brDistanceKm = null;
           brDistanceText = "";
           refreshSummary();
-
-  syncSummaryHeight();
+          syncSummaryHeight();
           updatePricingIfReady();
         });
 
@@ -1294,7 +1366,6 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           updatePricingIfReady();
         });
 
-        // If user types manually, clear saved Places objects
         pickupInput.addEventListener("input", () => {
           brPickupPlace = null;
           lastDistanceKey = "";
@@ -1310,118 +1381,114 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           brDistanceText = "";
           refreshSummary();
         });
-
       }catch(e){
         console.warn("initBookRideMaps failed:", e);
-        const mh = document.getElementById("br_maps_help");
-        if (mh) mh.textContent = "Google autocomplete failed to initialize. Confirm Places API is enabled and your key allows this domain.";
+        const mh = el("br_maps_help");
+        if(mh) mh.textContent = "Google autocomplete failed to initialize. Confirm Places API is enabled and your key allows this domain.";
       }
     };
 
+    function isYYZLocation(inputOrPlace){
+      const s = (
+        (typeof inputOrPlace === "string" ? inputOrPlace : "") ||
+        inputOrPlace?.formatted_address ||
+        inputOrPlace?.name ||
+        ""
+      ).toLowerCase();
 
-
-    let lastDistanceKey = "";
-    let brDistanceKm = null;
-    let brDistanceText = "";
-    let brPriceTotal = null;
-
-
-
-function isYYZLocation(inputOrPlace){
-  // inputOrPlace can be:
-  // - string (typed)
-  // - google place object
-  // - null
-  const s = (
-    (typeof inputOrPlace === "string" ? inputOrPlace : "") ||
-    inputOrPlace?.formatted_address ||
-    inputOrPlace?.name ||
-    ""
-  ).toLowerCase();
-
-  return (
-    s.includes("yyz") ||
-    s.includes("pearson") ||
-    s.includes("toronto pearson") ||
-    (s.includes("terminal 1") && (s.includes("pearson") || s.includes("yyz"))) ||
-    (s.includes("terminal 3") && (s.includes("pearson") || s.includes("yyz")))
-  );
-}
-
-function isYYZTrip(){
-  // If pickup OR drop-off is YYZ => airport pricing
-  return (
-    isYYZLocation(brPickupPlace) ||
-    isYYZLocation(brDropoffPlace) ||
-    isYYZLocation(val("br_pickup") || "") ||
-    isYYZLocation(val("br_dropoff") || "")
-  );
-}
-
-
-
+      return (
+        s.includes("yyz") ||
+        s.includes("pearson") ||
+        s.includes("toronto pearson") ||
+        (s.includes("terminal 1") && (s.includes("pearson") || s.includes("yyz"))) ||
+        (s.includes("terminal 3") && (s.includes("pearson") || s.includes("yyz")))
+      );
+    }
 
     function currentDateTime(){
-      const d = val('br_date');
-      const t = val('br_time');
+      const d = val("br_date");
+      const t = val("br_time");
+
       if(!d && !t) return "—";
       if(d && t) return `${d} ${t}`;
+
       return d || t;
     }
 
     function transferLabel(){
-      const t = val('br_transfer') || "one_way";
+      const t = val("br_transfer") || "one_way";
       return t === "round_trip" ? "Round Trip" : "One Way";
     }
 
     function vehicleLabel(){
-      const v = val('br_vehicle');
-if(v === "suv") return "SUV (up to 7 passengers)";
+      const v = val("br_vehicle");
+
+      if(v === "suv") return "SUV (up to 7 passengers)";
       if(v === "sedan") return "Sedan (1–3 passengers)";
+
       return "—";
     }
 
     function waitHours(){
-      const w = parseInt(val('br_wait') || "0", 10);
+      const w = parseInt(val("br_wait") || "0", 10);
       return Number.isFinite(w) ? w : 0;
     }
 
     function passengersCount(){
-      const p = parseInt(val('br_passengers') || "", 10);
+      const p = parseInt(val("br_passengers") || "", 10);
       return Number.isFinite(p) ? p : null;
     }
 
-  function enforcePassengerRules(){
-  const p = passengersCount();
-  const vehicleSelect = el("br_vehicle");
-  const paxInput = el("br_passengers");
-  if(!vehicleSelect || !paxInput) return;
-
-  const sedanOpt = Array.from(vehicleSelect.options).find(o => o.value === "sedan");
-  const suvOpt = Array.from(vehicleSelect.options).find(o => o.value === "suv");
-
-  // Clamp passengers to max 7
-  if(p && p > 7){
-    paxInput.value = "7";
-  }
-
-  // Reset availability
-  if(sedanOpt) sedanOpt.disabled = false;
-  if(suvOpt) suvOpt.disabled = false;
-
-  // Sedan max = 3
-  if(p && p > 3){
-    if(sedanOpt) sedanOpt.disabled = true;
-    if(vehicleSelect.value === "sedan"){
-      vehicleSelect.value = "suv";
+    function bagsCount(){
+      const b = parseInt(val("br_bags") || "", 10);
+      return Number.isFinite(b) ? b : null;
     }
-  }
-}
 
+    function enforcePassengerRules(){
+      const p = passengersCount();
+      const vehicleSelect = el("br_vehicle");
+      const paxInput = el("br_passengers");
+
+      if(!vehicleSelect || !paxInput) return;
+
+      const sedanOpt = Array.from(vehicleSelect.options).find((o) => o.value === "sedan");
+      const suvOpt = Array.from(vehicleSelect.options).find((o) => o.value === "suv");
+
+      if(p && p > 7){
+        paxInput.value = "7";
+      }
+
+      if(sedanOpt) sedanOpt.disabled = false;
+      if(suvOpt) suvOpt.disabled = false;
+
+      if(p && p > 3){
+        if(sedanOpt) sedanOpt.disabled = true;
+
+        if(vehicleSelect.value === "sedan"){
+          vehicleSelect.value = "suv";
+        }
+      }
+    }
+
+    function enforceBagRules(){
+      const b = bagsCount();
+      const bagsInput = el("br_bags");
+
+      if(!bagsInput) return;
+
+      if(b != null && b < 0){
+        bagsInput.value = "0";
+      }
+
+      if(b != null && b > 20){
+        bagsInput.value = "20";
+      }
+    }
 
     function enforceWaitingRules(){
       const t = val("br_transfer") || "one_way";
       const waitSel = el("br_wait");
+
       if(!waitSel) return;
 
       if(t !== "round_trip"){
@@ -1433,60 +1500,65 @@ if(v === "suv") return "SUV (up to 7 passengers)";
     }
 
     function refreshSummary(){
-      setText('br_sum_pickup', val('br_pickup') || "—");
-      setText('br_sum_dropoff', val('br_dropoff') || "—");
-      setText('br_sum_dt', currentDateTime());
-      setText('br_sum_transfer', transferLabel());
-      setText('br_sum_wait', (val('br_transfer') === "round_trip") ? (waitHours() ? `${waitHours()} hour(s)` : "No Waiting") : "—");
-      setText('br_sum_vehicle', vehicleLabel());
-      setText('br_sum_passengers', val('br_passengers') || "—");
+      setText("br_sum_pickup", val("br_pickup") || "—");
+      setText("br_sum_dropoff", val("br_dropoff") || "—");
+      setText("br_sum_dt", currentDateTime());
+      setText("br_sum_transfer", transferLabel());
+      setText("br_sum_wait", (val("br_transfer") === "round_trip") ? (waitHours() ? `${waitHours()} hour(s)` : "No Waiting") : "—");
+      setText("br_sum_vehicle", vehicleLabel());
+      setText("br_sum_passengers", val("br_passengers") || "—");
+      setText("br_sum_bags", val("br_bags") || "—");
+      setText("br_sum_flight", val("br_flight") || "—");
 
-      const name = val('br_name');
-      setText('br_sum_customer', name || "—");
+      const name = val("br_name");
+      setText("br_sum_customer", name || "—");
 
-      const email = val('br_email');
-      const phone = val('br_phone');
+      const email = val("br_email");
+      const phone = val("br_phone");
       const parts = [];
+
       if(email) parts.push(email);
       if(phone) parts.push(phone);
-      setText('br_sum_contact', parts.length ? parts.join(" • ") : "—");
 
-      setText('br_sum_distance', brDistanceText || "—");
+      setText("br_sum_contact", parts.length ? parts.join(" • ") : "—");
+      setText("br_sum_distance", brDistanceText || "—");
     }
 
     function setStep(n, opts = { scroll: true }){
-  Object.keys(stepPanels).forEach(k=>{
-    const kk = Number(k);
-    stepPanels[kk].classList.toggle('hidden', kk !== n);
-  });
+      Object.keys(stepPanels).forEach((k) => {
+        const kk = Number(k);
+        stepPanels[kk].classList.toggle("hidden", kk !== n);
+      });
 
-  stepEls.forEach(node=>{
-    const s = Number(node.getAttribute('data-step'));
-    node.classList.toggle('active', s === n);
-    node.classList.toggle('done', s < n);
-  });
+      stepEls.forEach((node) => {
+        const s = Number(node.getAttribute("data-step"));
+        node.classList.toggle("active", s === n);
+        node.classList.toggle("done", s < n);
+      });
 
-  refreshSummary();
+      refreshSummary();
+      syncSummaryHeight();
 
-  if(opts && opts.scroll){
-    const anchor = document.getElementById('book-ride');
-    if(anchor) anchor.scrollIntoView({behavior:"smooth", block:"start"});
-  }
-}
+      if(opts && opts.scroll){
+        const anchor = el("book-ride");
+        if(anchor) anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
 
     function syncSummaryHeight(){
-      const summaryPanel = document.getElementById("br_summary_panel");
+      const summaryPanel = el("br_summary_panel");
+
       if(!summaryPanel) return;
 
-      // When stacked (mobile), don't force heights
       if(window.matchMedia && window.matchMedia("(max-width: 980px)").matches){
         summaryPanel.style.minHeight = "";
         return;
       }
 
-      const s1 = document.getElementById("br-step-1");
-      const s2 = document.getElementById("br-step-2");
-      const s3 = document.getElementById("br-step-3");
+      const s1 = el("br-step-1");
+      const s2 = el("br-step-2");
+      const s3 = el("br-step-3");
+
       const activePanel = (s1 && !s1.classList.contains("hidden")) ? s1 :
                           (s2 && !s2.classList.contains("hidden")) ? s2 :
                           (s3 && !s3.classList.contains("hidden")) ? s3 : null;
@@ -1496,41 +1568,65 @@ if(v === "suv") return "SUV (up to 7 passengers)";
         return;
       }
 
-      // Match heights (account for borders)
       const h = Math.ceil(activePanel.getBoundingClientRect().height);
+
       if(h > 0){
         summaryPanel.style.minHeight = h + "px";
       }
     }
 
-
-
     function requiredOk(){
-      const pickup = val('br_pickup');
-      const dropoff = val('br_dropoff');
+      const pickup = val("br_pickup");
+      const dropoff = val("br_dropoff");
+
       if(!pickup || !dropoff){
         alert("Please enter both Pickup Location and Drop-Off Location.");
         return false;
       }
+
+      if(!dateTimeOk()){
+        return false;
+      }
+
       return true;
     }
 
     function vehicleOk(){
-      const vehicle = val('br_vehicle');
+      const vehicle = val("br_vehicle");
+
       if(!vehicle){
         alert("Please select a vehicle to continue.");
         return false;
       }
+
+      return true;
+    }
+
+    function customerOk(){
+      const name = val("br_name");
+      const phone = val("br_phone");
+
+      if(!name){
+        alert("Please enter Customer Name.");
+        return false;
+      }
+
+      if(!phone){
+        alert("Please enter Phone.");
+        return false;
+      }
+
       return true;
     }
 
     async function geocodeAddress(address){
-      return await new Promise((resolve, reject)=>{
+      return await new Promise((resolve, reject) => {
         const geo = new google.maps.Geocoder();
-        geo.geocode({ address }, (results, status)=>{
+
+        geo.geocode({ address }, (results, status) => {
           if(status === "OK" && results && results[0] && results[0].geometry && results[0].geometry.location){
             resolve(results[0].geometry.location);
-          }else{
+          } else {
             reject(new Error("Geocode failed: " + status));
           }
         });
@@ -1575,19 +1671,21 @@ if(v === "suv") return "SUV (up to 7 passengers)";
       const { o, d } = await getOriginDestLatLng();
 
       const service = new google.maps.DistanceMatrixService();
-      const resp = await new Promise((resolve, reject)=>{
+
+      const resp = await new Promise((resolve, reject) => {
         service.getDistanceMatrix({
           origins: [o],
           destinations: [d],
           travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.METRIC
-        }, (res, status)=>{
+          unitSystem: google.maps.UnitSystem.METRIC,
+        }, (res, status) => {
           if(status !== "OK") return reject(new Error("DistanceMatrix failed: " + status));
           resolve(res);
         });
       });
 
       const element = resp?.rows?.[0]?.elements?.[0];
+
       if(!element || element.status !== "OK"){
         throw new Error("Could not calculate distance between these locations.");
       }
@@ -1595,97 +1693,93 @@ if(v === "suv") return "SUV (up to 7 passengers)";
       const meters = element.distance?.value;
       const text = element.distance?.text;
 
-      if(!meters || meters <= 0) throw new Error("Invalid distance returned.");
+      if(!meters || meters <= 0){
+        throw new Error("Invalid distance returned.");
+      }
 
       brDistanceKm = meters / 1000;
       brDistanceText = text || (brDistanceKm.toFixed(1) + " km");
       lastDistanceKey = key;
 
       refreshSummary();
+
       return brDistanceKm;
     }
 
     function calcOneWayPrice(vehicle, km){
-  if(!km || km <= 0) return null;
+      if(!km || km <= 0) return null;
 
-  const yyzTrip = (
-    isYYZLocation(brPickupPlace) ||
-    isYYZLocation(brDropoffPlace) ||
-    isYYZLocation(val("br_pickup") || "") ||
-    isYYZLocation(val("br_dropoff") || "")
-  );
+      const yyzTrip = (
+        isYYZLocation(brPickupPlace) ||
+        isYYZLocation(brDropoffPlace) ||
+        isYYZLocation(val("br_pickup") || "") ||
+        isYYZLocation(val("br_dropoff") || "")
+      );
 
-  let total = 0;
-  let breakdown = "";
+      let total = 0;
+      let breakdown = "";
 
-  /* ================= YYZ PRICING (UPDATED) ================= */
-  // Sedan:
-  //   <25 km     => $50
-  //   25–60 km   => $2 / km
-  //   60+ km     => First 60 km = $120, extra km = $0.77 / km
-  // SUV:
-  //   Same as Sedan + $30
-  if(yyzTrip){
-    let sedanBase = 0;
-    let sedanBreakdown = "";
+      if(yyzTrip){
+        let sedanBase = 0;
+        let sedanBreakdown = "";
 
-    if(km < 25){
-      sedanBase = 50;
-      sedanBreakdown = "YYZ Sedan flat rate (under 25km): $50";
-    } else if(km <= 60){
-      sedanBase = km * 2;
-      sedanBreakdown = `YYZ Sedan: $2.00/km × ${km.toFixed(1)}km`;
-    } else {
-      const over = km - 60;
-      sedanBase = 120 + (over * 0.77);
-      sedanBreakdown = `YYZ Sedan: $120 + $0.77/km × ${over.toFixed(1)}km`;
+        if(km < 25){
+          sedanBase = 50;
+          sedanBreakdown = "YYZ Sedan flat rate (under 25km): $50";
+        } else if(km <= 60){
+          sedanBase = km * 2;
+          sedanBreakdown = `YYZ Sedan: $2.00/km × ${km.toFixed(1)}km`;
+        } else {
+          const over = km - 60;
+          sedanBase = 120 + (over * 0.77);
+          sedanBreakdown = `YYZ Sedan: $120 + $0.77/km × ${over.toFixed(1)}km`;
+        }
+
+        if(vehicle === "suv"){
+          total = sedanBase + 30;
+          breakdown = sedanBreakdown + " + $30 (SUV)";
+          return { total, breakdown };
+        }
+
+        total = sedanBase;
+        breakdown = sedanBreakdown;
+        return { total, breakdown };
+      }
+
+      if(vehicle === "sedan"){
+        if(km <= 18){
+          total = 50;
+          breakdown = "Sedan flat rate (0–18km): $50";
+        } else if(km <= 100){
+          total = km * 2.7;
+          breakdown = `Sedan: $2.70/km × ${km.toFixed(1)}km`;
+        } else {
+          const over = km - 100;
+          total = 270 + (over * 2);
+          breakdown = `Sedan: $270 + $2.00/km × ${over.toFixed(1)}km`;
+        }
+
+        return { total, breakdown };
+      }
+
+      if(vehicle === "suv"){
+        if(km <= 25){
+          total = 75;
+          breakdown = "SUV flat rate (0–25km): $75";
+        } else if(km <= 100){
+          total = km * 3;
+          breakdown = `SUV: $3.00/km × ${km.toFixed(1)}km`;
+        } else {
+          const over = km - 100;
+          total = 300 + (over * 2.5);
+          breakdown = `SUV: $300 + $2.50/km × ${over.toFixed(1)}km`;
+        }
+
+        return { total, breakdown };
+      }
+
+      return null;
     }
-
-    if(vehicle === "suv"){
-      total = sedanBase + 30;
-      breakdown = sedanBreakdown + " + $30 (SUV)";
-      return { total, breakdown };
-    }
-
-    total = sedanBase;
-    breakdown = sedanBreakdown;
-    return { total, breakdown };
-  }
-
-  /* ================= NON-YYZ PRICING (UNCHANGED) ================= */
-  if(vehicle === "sedan"){
-    if(km <= 18){
-      total = 50;
-      breakdown = "Sedan flat rate (0–18km): $50";
-    } else if(km <= 100){
-      total = km * 2.7;
-      breakdown = `Sedan: $2.70/km × ${km.toFixed(1)}km`;
-    } else {
-      const over = km - 100;
-      total = 270 + (over * 2);
-      breakdown = `Sedan: $270 + $2.00/km × ${over.toFixed(1)}km`;
-    }
-    return { total, breakdown };
-  }
-
-  if(vehicle === "suv"){
-    if(km <= 25){
-      total = 75;
-      breakdown = "SUV flat rate (0–25km): $75";
-    } else if(km <= 100){
-      total = km * 3;
-      breakdown = `SUV: $3.00/km × ${km.toFixed(1)}km`;
-    } else {
-      const over = km - 100;
-      total = 300 + (over * 2.5);
-      breakdown = `SUV: $300 + $2.50/km × ${over.toFixed(1)}km`;
-    }
-    return { total, breakdown };
-  }
-
-  return null;
-}
-
 
     function fmtMoney(n){
       return "$" + n.toFixed(2);
@@ -1693,39 +1787,51 @@ if(v === "suv") return "SUV (up to 7 passengers)";
 
     async function updatePricingIfReady(){
       enforcePassengerRules();
+      enforceBagRules();
       enforceWaitingRules();
 
-      const name = val("br_name");
       const priceEl = el("br_price_display");
       const subEl = el("br_price_sub");
       const noteEl = el("br_price_note");
 
-      if(!name){
+      if(!val("br_name") || !val("br_phone")){
         brPriceTotal = null;
         if(priceEl) priceEl.textContent = "—";
-        if(subEl) subEl.textContent = "Enter your name to calculate";
-        if(noteEl) noteEl.textContent = "Enter your name to calculate price.";
+        if(subEl) subEl.textContent = "Enter your name and phone to calculate";
+        if(noteEl) noteEl.textContent = "Enter your name and phone number to calculate price.";
         return;
       }
 
-      if(!requiredOk()){
+      if(!val("br_pickup") || !val("br_dropoff") || !val("br_date") || !val("br_time")){
         brPriceTotal = null;
-        if(subEl) subEl.textContent = "Add pickup & drop-off to calculate";
-        if(noteEl) noteEl.textContent = "Add pickup & drop-off to calculate price.";
+        if(priceEl) priceEl.textContent = "—";
+        if(subEl) subEl.textContent = "Add ride details to calculate";
+        if(noteEl) noteEl.textContent = "Add pickup, drop-off, date, and time to calculate price.";
+        return;
+      }
+
+      const selected = selectedPickupDateTime();
+
+      if(!selected || selected.getTime() < new Date().getTime()){
+        brPriceTotal = null;
+        if(priceEl) priceEl.textContent = "—";
+        if(subEl) subEl.textContent = "Select a future pickup time";
+        if(noteEl) noteEl.textContent = "Pickup date and time cannot be in the past.";
         return;
       }
 
       if(!val("br_vehicle")){
         brPriceTotal = null;
+        if(priceEl) priceEl.textContent = "—";
         if(subEl) subEl.textContent = "Select a vehicle to calculate";
         if(noteEl) noteEl.textContent = "Select a vehicle to calculate price.";
         return;
       }
 
-      // Compute distance (driving)
       let km = null;
+
       try{
-        subEl && (subEl.textContent = "Calculating distance…");
+        if(subEl) subEl.textContent = "Calculating distance…";
         km = await computeDistanceKm();
       }catch(e){
         brPriceTotal = null;
@@ -1735,8 +1841,8 @@ if(v === "suv") return "SUV (up to 7 passengers)";
         return;
       }
 
-      const vehicle = val("br_vehicle");
-      const oneWay = calcOneWayPrice(vehicle, km);
+      const oneWay = calcOneWayPrice(val("br_vehicle"), km);
+
       if(!oneWay){
         brPriceTotal = null;
         if(priceEl) priceEl.textContent = "—";
@@ -1747,69 +1853,69 @@ if(v === "suv") return "SUV (up to 7 passengers)";
 
       const t = val("br_transfer") || "one_way";
       let total = oneWay.total;
-      let details = oneWay.breakdown;
 
       if(t === "round_trip"){
         total = total * 2;
-        details = `Round Trip = (One Way × 2). ${details}`;
 
         const w = waitHours();
+
         if(w > 0){
           total += (w * 80);
-          details += ` + Waiting: $80 × ${w} hour(s)`;
         }
       }
 
       brPriceTotal = total;
 
       if(priceEl) priceEl.textContent = fmtMoney(total) + " CAD";
-      if(subEl) subEl.textContent = (brDistanceText ? `Distance: ${brDistanceText}` : "Distance calculated");
-      if(noteEl) noteEl.textContent = "Price calculated. Proceed to secure checkout.";
-}
+      if(subEl) subEl.textContent = brDistanceText ? `Distance: ${brDistanceText}` : "Distance calculated";
+      if(noteEl) noteEl.textContent = "Price calculated. Final price is securely verified before checkout.";
+    }
 
-    async function createCheckoutSession(){
-      // Must have computed price
-      if(brPriceTotal == null){
-        await updatePricingIfReady();
-      }
-      if(brPriceTotal == null){
-        alert("Price is not ready yet. Please enter your name and make sure pickup/drop-off are valid.");
-        return;
-      }
-
-      const payload = {
-        currency: CURRENCY,
-        amount_cents: Math.round(brPriceTotal * 100),
+    function buildBookingPayload(){
+      return {
         booking: {
-          pickup: val('br_pickup') || "",
-          dropoff: val('br_dropoff') || "",
+          pickup: val("br_pickup") || "",
+          dropoff: val("br_dropoff") || "",
           pickup_place_id: brPickupPlace?.place_id || "",
           dropoff_place_id: brDropoffPlace?.place_id || "",
-          distance_km: brDistanceKm,
-          transfer_type: val('br_transfer') || "one_way",
-          waiting_hours: (val('br_transfer') === "round_trip") ? waitHours() : 0,
-          vehicle: val('br_vehicle') || "",
+          transfer_type: val("br_transfer") || "one_way",
+          waiting_hours: (val("br_transfer") === "round_trip") ? waitHours() : 0,
+          vehicle: val("br_vehicle") || "",
           passengers: passengersCount() || "",
+          bags: bagsCount() || "",
+          flight_number: val("br_flight") || "",
           pickup_datetime: currentDateTime(),
-          customer_name: val('br_name') || "",
-          customer_email: val('br_email') || "",
-          customer_phone: val('br_phone') || "",
-          notify_to: "blackcarlimousines@gmail.com"
-        }
+          customer_name: val("br_name") || "",
+          customer_email: val("br_email") || "",
+          customer_phone: val("br_phone") || "",
+        },
       };
+    }
+
+    async function createCheckoutSession(){
+      if(!requiredOk()) return;
+      if(!vehicleOk()) return;
+      if(!customerOk()) return;
+
+      await updatePricingIfReady();
+
+      const payload = buildBookingPayload();
 
       try{
         const res = await fetch(CREATE_CHECKOUT_ENDPOINT, {
           method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify(payload)
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
 
+        const data = await res.json().catch(() => null);
+
         if(!res.ok){
-          throw new Error("Checkout endpoint error: " + res.status);
+          const msg = data?.error || "Could not start Stripe checkout. Please check your booking details and try again.";
+          alert(msg);
+          return;
         }
 
-        const data = await res.json();
         if(!data || !data.url){
           throw new Error("Invalid response from checkout endpoint.");
         }
@@ -1821,123 +1927,184 @@ if(v === "suv") return "SUV (up to 7 passengers)";
       }
     }
 
-    // Bind inputs to summary + pricing
+    async function submitPayLaterBooking(){
+      if(!requiredOk()) return;
+      if(!vehicleOk()) return;
+      if(!customerOk()) return;
+
+      await updatePricingIfReady();
+
+      const button = el("br_pay_later");
+      const originalText = button ? button.textContent : "";
+
+      if(button){
+        button.disabled = true;
+        button.textContent = "Submitting...";
+      }
+
+      const payload = buildBookingPayload();
+
+      try{
+        const res = await fetch(PAY_LATER_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json().catch(() => null);
+
+        if(!res.ok){
+          const msg = data?.error || "Could not submit Pay Later booking. Please check your booking details and try again.";
+          alert(msg);
+          return;
+        }
+
+        showToast(
+          "✅ Booking request received — we will confirm your ride shortly",
+          "Thank you! Your Pay Later booking request has been sent to our team. We will review the ride details and contact you shortly."
+        );
+      }catch(err){
+        console.warn(err);
+        alert("Could not submit Pay Later booking. Please try again in a moment.");
+      }finally{
+        if(button){
+          button.disabled = false;
+          button.textContent = originalText || "Pay Later";
+        }
+      }
+    }
+
     [
-      'br_date','br_time',
-      'br_pickup','br_dropoff',
-      'br_transfer','br_wait',
-      'br_vehicle','br_passengers',
-      'br_name','br_phone','br_email'
-    ].forEach(id=>{
+      "br_date",
+      "br_time",
+      "br_pickup",
+      "br_dropoff",
+      "br_transfer",
+      "br_wait",
+      "br_vehicle",
+      "br_passengers",
+      "br_bags",
+      "br_flight",
+      "br_name",
+      "br_phone",
+      "br_email",
+    ].forEach((id) => {
       const node = el(id);
+
       if(!node) return;
 
-      node.addEventListener('input', ()=>{
+      node.addEventListener("input", () => {
         enforcePassengerRules();
+        enforceBagRules();
         enforceWaitingRules();
         refreshSummary();
         updatePricingIfReady();
       });
-      node.addEventListener('change', ()=>{
+
+      node.addEventListener("change", () => {
         enforcePassengerRules();
+        enforceBagRules();
         enforceWaitingRules();
         refreshSummary();
         updatePricingIfReady();
       });
     });
 
-    // Buttons
-    el('br_next_1')?.addEventListener('click', ()=>{
+    el("br_next_1")?.addEventListener("click", () => {
       if(!requiredOk()) return;
       setStep(2);
     });
-    el('br_back_2')?.addEventListener('click', ()=> setStep(1));
-    el('br_next_2')?.addEventListener('click', ()=>{
+
+    el("br_back_2")?.addEventListener("click", () => setStep(1));
+
+    el("br_next_2")?.addEventListener("click", () => {
       enforcePassengerRules();
+      enforceBagRules();
+
       if(!vehicleOk()) return;
+
       setStep(3);
       updatePricingIfReady();
     });
-    el('br_back_3')?.addEventListener('click', ()=> setStep(2));
 
-    el('br_pay')?.addEventListener('click', async ()=>{
-      if(!requiredOk()) return;
-      if(!vehicleOk()) return;
+    el("br_back_3")?.addEventListener("click", () => setStep(2));
 
-      // must have name to calculate
-      if(!val("br_name")){
-        alert("Please enter Customer Name to calculate the price.");
-        return;
-      }
-
-      await updatePricingIfReady();
+    el("br_pay")?.addEventListener("click", async () => {
       await createCheckoutSession();
     });
 
-    // Initialize rules
+    el("br_pay_later")?.addEventListener("click", async () => {
+      await submitPayLaterBooking();
+    });
+
+    function showToast(title, message){
+      document.querySelectorAll(".toast").forEach((t) => t.remove());
+
+      const t = document.createElement("div");
+      t.className = "toast";
+      t.innerHTML = `
+        <div class="row">
+          <div>
+            <h5>${title}</h5>
+            <p>${message}</p>
+          </div>
+          <button class="x" type="button" aria-label="Close">✕</button>
+        </div>
+      `;
+
+      t.querySelector(".x").addEventListener("click", () => t.remove());
+      document.body.appendChild(t);
+    }
+
+    function handleStripeReturn(){
+      const params = new URLSearchParams(window.location.search);
+
+      if(params.get("paid") === "1"){
+        showToast(
+          "✅ Payment received — we will confirm your ride shortly",
+          "Thank you! We’ve received your payment and your booking details. Our team will review the ride and contact you shortly if anything else is needed."
+        );
+
+        params.delete("paid");
+        params.delete("session_id");
+
+        const cleaned = window.location.pathname + (params.toString() ? `?${params.toString()}` : "") + window.location.hash;
+        window.history.replaceState({}, "", cleaned);
+      }
+
+      if(params.get("canceled") === "1"){
+        showToast(
+          "Payment not completed",
+          "No worries — your payment was canceled. You can try again anytime by pressing Pay Now."
+        );
+
+        params.delete("canceled");
+
+        const cleaned = window.location.pathname + (params.toString() ? `?${params.toString()}` : "") + window.location.hash;
+        window.history.replaceState({}, "", cleaned);
+      }
+    }
+
+    setDateMin();
     enforceWaitingRules();
+    enforceBagRules();
     refreshSummary();
-setStep(1, { scroll:false });
+    setStep(1, { scroll: false });
     syncSummaryHeight();
+    handleStripeReturn();
+
     window.addEventListener("resize", syncSummaryHeight);
 
-
- /* ADD THIS WHOLE BLOCK HERE */
-function showToast(title, message){
-  document.querySelectorAll(".toast").forEach(t => t.remove());
-
-  const t = document.createElement("div");
-  t.className = "toast";
-  t.innerHTML = `
-    <div class="row">
-      <div>
-        <h5>${title}</h5>
-        <p>${message}</p>
-      </div>
-      <button class="x" type="button" aria-label="Close">✕</button>
-    </div>
-  `;
-  t.querySelector(".x").addEventListener("click", ()=> t.remove());
-  document.body.appendChild(t);
-
-}
-
-(function handleStripeReturn(){
-  const params = new URLSearchParams(window.location.search);
-
-  if(params.get("paid") === "1"){
-    showToast(
-      "✅ Payment received — your ride is confirmed!",
-      "Thank you! We’ve received your payment and your booking is secured. We’ll reach out shortly if we need any extra details."
-    );
-    params.delete("paid");
-    params.delete("session_id");
-    const cleaned = window.location.pathname + (params.toString() ? `?${params.toString()}` : "") + window.location.hash;
-    window.history.replaceState({}, "", cleaned);
-  }
-
-  if(params.get("canceled") === "1"){
-    showToast(
-      "Payment not completed",
-      "No worries — your payment was canceled. You can try again anytime by pressing Pay Now."
-    );
-    params.delete("canceled");
-    const cleaned = window.location.pathname + (params.toString() ? `?${params.toString()}` : "") + window.location.hash;
-    window.history.replaceState({}, "", cleaned);
-  }
-})();
-/* END BLOCK */
-
-
- })();
+  })();
 </script>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script>
   // Google Maps (Places) loader for Book a Ride (Autocomplete)
+
   // Uses the SAME key as index.html
   const GOOGLE_MAPS_API_KEY = "AIzaSyCNQsodqKA080NCYLdVuvsWbZaEsSVvAf0";
 
