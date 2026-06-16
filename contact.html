@@ -2008,13 +2008,21 @@ body.menu-open .mobile-drawer{transform:translateX(0)}
           return;
         }
 
-        setBookingActionButtonsDisabled(true);
+setBookingActionButtonsDisabled(true);
 
-        showToast(
-          "✅ Booking request received — we will confirm your ride shortly",
-          "Thank you! Your Pay Later booking request has been sent to our team. We will review the ride details and contact you shortly.",
-          resetBookingForm
-        );
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  event: "pay_later_submitted",
+  booking_payment_type: "pay_later",
+  conversion_value: data?.amount_cents ? data.amount_cents / 100 : brPriceTotal || 0,
+  currency: "CAD"
+});
+
+showToast(
+  "✅ Booking request received — we will confirm your ride shortly",
+  "Thank you! Your Pay Later booking request has been sent to our team. We will review the ride details and contact you shortly.",
+  resetBookingForm
+);
 
       }catch(err){
         console.warn(err);
